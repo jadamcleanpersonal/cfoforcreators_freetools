@@ -965,7 +965,7 @@ export function ResultHeadlineTemplate({ headline, subline, toolName }: Props) {
         <div style={{ fontSize: 36, opacity: 0.85, marginTop: 24 }}>{subline}</div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, opacity: 0.6 }}>
-        <span>cfoforcreators.com</span>
+        <span>thecfoforcreators.com</span>
         <span>free tool</span>
       </div>
     </div>
@@ -992,7 +992,7 @@ import { US_STATES } from "@/data/states";
 import { PSEO_TOPICS } from "@/content/states/_data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://cfoforcreators.com";
+  const base = "https://thecfoforcreators.com";
   return [
     { url: base, priority: 1.0, changeFrequency: "weekly" },
     ...allTools.map(t => ({ url: `${base}/${t.slug}`, priority: 0.9, changeFrequency: "monthly" as const })),
@@ -1131,7 +1131,7 @@ export default {
 - Day 5: SEO basics — `sitemap.ts`, `robots.ts`, `metadata`, `Organization` JSON-LD, fallback OG.
 - Day 5: Lighthouse audit, mobile test on real iPhone + Pixel, ship to production.
 
-**End-of-week deliverable:** anyone can land on cfoforcreators.com on their phone, read the offer, give us their email, get on Beehiiv, see the spots counter tick if they fill the Tally form.
+**End-of-week deliverable:** anyone can land on thecfoforcreators.com on their phone, read the offer, give us their email, get on Beehiiv, see the spots counter tick if they fill the Tally form.
 
 ### Week 2 — Tax estimator (the universal-pain tool)
 
@@ -1293,7 +1293,7 @@ The test cases come from running the same scenarios through TurboTax / a CPA's w
 
 ### Branching strategy
 
-- `main` — production (auto-deploys to cfoforcreators.com)
+- `main` — production (auto-deploys to thecfoforcreators.com)
 - Feature branches off `main` — every PR auto-deploys a preview URL via Vercel
 - No `develop` branch — adds friction at this stage
 
@@ -1333,7 +1333,7 @@ jobs:
 
 | Var | Where | Notes |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | All envs | https://cfoforcreators.com (or preview URL) |
+| `NEXT_PUBLIC_SITE_URL` | All envs | https://thecfoforcreators.com (or preview URL) |
 | `NEXT_PUBLIC_POSTHOG_KEY` | All envs | Public, safe to expose |
 | `SUPABASE_URL` | All envs | Public via `NEXT_PUBLIC_*` mirror |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server only | NEVER expose |

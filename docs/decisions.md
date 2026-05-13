@@ -5,7 +5,7 @@ These are the placeholder-friendly decisions Claude Code can't make for you. Fil
 ## Brand identity
 
 - **Brand name:** CFO for creators
-- **Domain:** cfoforcreators.com
+- **Domain:** thecfoforcreators.com
 - **Primary color:** TODO (hex code, e.g., `#0A2540`. If unsure, write `use Tailwind defaults` and refine later.)
 - **Accent color:** TODO (hex code)
 - **Logo:** TODO (SVG path in `public/logo.svg`, OR text-only wordmark "CFO for creators")
@@ -20,7 +20,7 @@ These are the placeholder-friendly decisions Claude Code can't make for you. Fil
 
 ## Contact
 
-- **Founder reply email:** TODO (where waitlist replies go — e.g., `jada@cfoforcreators.com` once Resend domain is verified)
+- **Founder reply email:** TODO (where waitlist replies go — e.g., `jada@thecfoforcreators.com` once Resend domain is verified)
 - **Twitter / X handle:** TODO (e.g., `@jadamclean`)
 - **LinkedIn URL:** TODO (optional)
 

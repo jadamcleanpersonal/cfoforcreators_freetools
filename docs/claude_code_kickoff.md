@@ -35,7 +35,7 @@ In rough priority order. Don't skip — the kickoff prompt assumes these account
 
 ### 3. Configure DNS so CFOforcreators.com points at Vercel (10 min)
 
-In Vercel project settings → Domains → Add `cfoforcreators.com`. Vercel will show you A/CNAME records. Paste them into your DNS provider. Propagation is usually <1 hour.
+In Vercel project settings → Domains → Add `thecfoforcreators.com`. Vercel will show you A/CNAME records. Paste them into your DNS provider. Propagation is usually <1 hour.
 
 ### 4. Drop the design docs into the repo (5 min)
 
@@ -252,7 +252,7 @@ Tone: honest, brief. The human will read this first thing in the morning. They n
 
 ```bash
 # Vercel auto-injects these in production
-NEXT_PUBLIC_SITE_URL=https://cfoforcreators.com
+NEXT_PUBLIC_SITE_URL=https://thecfoforcreators.com
 
 # Supabase
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxx.supabase.co
