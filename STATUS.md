@@ -71,6 +71,25 @@
 
 ---
 
+## ACTION REQUIRED before Sprint 2
+
+### 1. Push the branch (5 minutes)
+The branch is committed locally but the push failed — your GitHub PAT is missing the `workflow` scope (needed to push `.github/workflows/ci.yml`).
+
+To fix:
+1. Go to GitHub → Settings → Developer settings → Personal access tokens
+2. Edit your token → check the **`workflow`** scope → Save
+3. Then run: `git push -u origin feat/sprint1-foundation`
+4. Open a PR from `feat/sprint1-foundation` → `main` (do NOT merge — leave for review)
+
+### 2. Run Supabase migrations
+Apply `supabase/migrations/00001_init.sql` and `00002_tool_results.sql` to your Supabase project before testing the waitlist form.
+
+### 3. pnpm approve-builds
+Run `pnpm approve-builds` interactively and approve: esbuild, @biomejs/biome, core-js, protobufjs, sharp. This writes to `pnpm-lock.yaml` and will fix CI.
+
+---
+
 ## Blockers / notes for tomorrow
 
 ### pnpm build scripts security warning
