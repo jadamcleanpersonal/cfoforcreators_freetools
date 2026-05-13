@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors */
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-paper: #ffffff;
+  --color-paper-soft: #f8fafc;
+  --color-brand: #16a34a;
+  --color-brand-dark: #15803d;
+  --color-warn: #f59e0b;
+  --color-danger: #dc2626;
+
+  /* Border / backgrounds */
+  --color-border: #e2e8f0;
+  --color-background: #ffffff;
+  --color-card: #ffffff;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-ring: #16a34a;
+
+  /* Semantic shadcn-compatible tokens */
+  --color-foreground: #0f172a;
+  --color-primary: #16a34a;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #0f172a;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-input: #e2e8f0;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0f172a;
+
+  /* Typography */
+  --font-family-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-size-base: 17px;
+  --line-height-base: 1.6;
+  --font-size-result: 48px;
+  --line-height-result: 1.1;
+  --font-size-result-lg: 72px;
+  --line-height-result-lg: 1.05;
+
+  /* Spacing */
+  --spacing-tap: 44px;
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-ink);
+  }
+
+  /* Prevent iOS zoom on input focus */
+  input,
+  select,
+  textarea {
+    font-size: 17px;
+  }
+}
