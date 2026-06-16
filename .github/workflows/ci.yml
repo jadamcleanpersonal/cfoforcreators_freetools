@@ -54,6 +54,19 @@ jobs:
         run: pnpm playwright test
         env:
           NEXT_PUBLIC_SITE_URL: http://localhost:3000
+          # Fake env vars — the app constructs Supabase/Anthropic clients at module load
+          # but the e2e tests don't actually hit those services (SpotsCounter has fallback).
+          NEXT_PUBLIC_SUPABASE_URL: https://fake.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: fake-anon-key
+          SUPABASE_SERVICE_ROLE_KEY: fake-service-role-key
+          NEXT_PUBLIC_POSTHOG_KEY: phc_fake
+          NEXT_PUBLIC_POSTHOG_HOST: https://us.i.posthog.com
+          BEEHIIV_API_KEY: fake
+          BEEHIIV_PUBLICATION_ID: pub_fake
+          RESEND_API_KEY: re_fake
+          ANTHROPIC_API_KEY: sk-ant-fake
+          ADMIN_PASSWORD: fake
+          TALLY_WEBHOOK_SECRET: fake
 
       - uses: actions/upload-artifact@v4
         if: failure()
