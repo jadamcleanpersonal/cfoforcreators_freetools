@@ -6,10 +6,12 @@
 
 import type { ToolDefinition } from "./_types";
 import type { z } from "zod";
+import taxEstimator from "./tax-estimator";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const allTools: ToolDefinition<z.ZodTypeAny, any>[] = [
-  // Sprint 2: add tax-estimator here
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  taxEstimator as unknown as ToolDefinition<z.ZodTypeAny, any>,
   // Sprint 3: add scorp-calculator here
   // Sprint 4: add llc-chooser, retirement-chooser here
   // Sprint 5: add sponsor-rate here
