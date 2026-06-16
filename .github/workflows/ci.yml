@@ -21,7 +21,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: pnpm biome check .
+        run: pnpm biome check --diagnostic-level=error .
 
       - name: Typecheck
         run: pnpm tsc --noEmit
