@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import FAQ from "@/components/landing/FAQ";
 import FounderNote from "@/components/landing/FounderNote";
 import Hero from "@/components/landing/Hero";
 import OfferStack from "@/components/landing/OfferStack";
 import ProblemBlock from "@/components/landing/ProblemBlock";
 import WhatItDoes from "@/components/landing/WhatItDoes";
-import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import SpotsCounter from "@/components/waitlist/SpotsCounter";
+import WaitlistForm from "@/components/waitlist/WaitlistForm";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "cfo for creators — taxes, sponsor rates, write-offs handled",

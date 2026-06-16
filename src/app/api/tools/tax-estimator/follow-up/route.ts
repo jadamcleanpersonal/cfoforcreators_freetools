@@ -2,10 +2,10 @@
 // Extends the generic follow-up handler with tax-specific AI context.
 // Per CLAUDE.md: never recommend W-2 withholding adjustments. Read-only frame.
 
+import { AI_CFO_SYSTEM_PROMPT } from "@/lib/prompts/ai-cfo";
 import { anthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { NextResponse } from "next/server";
-import { AI_CFO_SYSTEM_PROMPT } from "@/lib/prompts/ai-cfo";
 
 export const runtime = "edge";
 export const dynamic = "force-dynamic";

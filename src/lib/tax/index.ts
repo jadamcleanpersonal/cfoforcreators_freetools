@@ -2,11 +2,11 @@
 // Combines federal + state + SE + safe harbor + quarterly into the final result shape.
 // Called by the API route — pure function, no React, no I/O.
 
-import { computeFederalTax, type FilingStatus } from "./federal";
-import { computeStateTax } from "./state";
-import { computeSafeHarbor } from "./safe_harbor";
-import { computeQuarterlyPayment, type Quarter } from "./quarterly";
 import { getStateName } from "@/data/states";
+import { type FilingStatus, computeFederalTax } from "./federal";
+import { type Quarter, computeQuarterlyPayment } from "./quarterly";
+import { computeSafeHarbor } from "./safe_harbor";
+import { computeStateTax } from "./state";
 
 // ── Input schema (mirrors src/tools/tax-estimator.ts zod schema) ──────────
 export interface TaxEstimatorInput {
@@ -37,7 +37,7 @@ export interface TaxEstimatorOutput {
   verdictHeadline: string;
   verdictReason: string;
   amountThisQuarter: number;
-  deadline: string;          // human-readable, e.g. "April 15, 2025"
+  deadline: string; // human-readable, e.g. "April 15, 2025"
   projectedAnnualIncome: number;
   projectedAnnualExpenses: number;
   federalBreakdown: {
@@ -53,7 +53,7 @@ export interface TaxEstimatorOutput {
   catchUpPenaltyEstimate?: number;
   // For ResultDisplay
   totalProjectedTax: number;
-  effectiveRate: number;     // decimal (0.22 = 22%)
+  effectiveRate: number; // decimal (0.22 = 22%)
 }
 
 export function computeTaxEstimate(input: TaxEstimatorInput): TaxEstimatorOutput {
@@ -136,8 +136,7 @@ export function computeTaxEstimate(input: TaxEstimatorInput): TaxEstimatorOutput
     stateName: getStateName(state),
     safeHarborThreshold,
     safeHarborNote,
-    catchUpPenaltyEstimate:
-      quarterly.verdict === "wait" ? quarterly.penaltyEstimate : undefined,
+    catchUpPenaltyEstimate: quarterly.verdict === "wait" ? quarterly.penaltyEstimate : undefined,
     totalProjectedTax,
     effectiveRate: Math.round(effectiveRate * 1000) / 1000,
   };

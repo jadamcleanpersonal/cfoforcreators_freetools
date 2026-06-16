@@ -12,7 +12,10 @@ export default function ProblemBlock() {
           "your accountant doesn't know what adsense is",
         ].map((item) => (
           <li key={item} className="flex items-start gap-3">
-            <span className="mt-1.5 w-2 h-2 rounded-full bg-warn flex-shrink-0" aria-hidden="true" />
+            <span
+              className="mt-1.5 w-2 h-2 rounded-full bg-warn flex-shrink-0"
+              aria-hidden="true"
+            />
             <span className="text-base text-ink-muted leading-relaxed">{item}</span>
           </li>
         ))}

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import type { ToolDefinition } from "@/tools/_types";
-import type { z } from "zod";
 import { Events } from "@/lib/posthog";
+import type { ToolDefinition } from "@/tools/_types";
+import { useState } from "react";
+import type { z } from "zod";
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

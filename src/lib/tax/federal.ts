@@ -19,40 +19,40 @@ interface TaxBracket {
 // ---------------------------------------------------------------------------
 const BRACKETS_2024: Record<FilingStatus, TaxBracket[]> = {
   single: [
-    { upTo: 11_600, rate: 0.10 },
+    { upTo: 11_600, rate: 0.1 },
     { upTo: 47_150, rate: 0.12 },
     { upTo: 100_525, rate: 0.22 },
     { upTo: 191_950, rate: 0.24 },
     { upTo: 243_725, rate: 0.32 },
     { upTo: 609_350, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
   married_joint: [
-    { upTo: 23_200, rate: 0.10 },
+    { upTo: 23_200, rate: 0.1 },
     { upTo: 94_300, rate: 0.12 },
     { upTo: 201_050, rate: 0.22 },
     { upTo: 383_900, rate: 0.24 },
     { upTo: 487_450, rate: 0.32 },
     { upTo: 731_200, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
   married_separate: [
-    { upTo: 11_600, rate: 0.10 },
+    { upTo: 11_600, rate: 0.1 },
     { upTo: 47_150, rate: 0.12 },
     { upTo: 100_525, rate: 0.22 },
     { upTo: 191_950, rate: 0.24 },
     { upTo: 243_725, rate: 0.32 },
     { upTo: 365_600, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
   head_of_household: [
-    { upTo: 16_550, rate: 0.10 },
+    { upTo: 16_550, rate: 0.1 },
     { upTo: 63_100, rate: 0.12 },
     { upTo: 100_500, rate: 0.22 },
     { upTo: 191_950, rate: 0.24 },
     { upTo: 243_700, rate: 0.32 },
     { upTo: 609_350, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
 };
 
@@ -61,62 +61,72 @@ const BRACKETS_2024: Record<FilingStatus, TaxBracket[]> = {
 // ---------------------------------------------------------------------------
 const BRACKETS_2025: Record<FilingStatus, TaxBracket[]> = {
   single: [
-    { upTo: 11_925, rate: 0.10 },
+    { upTo: 11_925, rate: 0.1 },
     { upTo: 48_475, rate: 0.12 },
     { upTo: 103_350, rate: 0.22 },
     { upTo: 197_300, rate: 0.24 },
     { upTo: 250_525, rate: 0.32 },
     { upTo: 626_350, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
   married_joint: [
-    { upTo: 23_850, rate: 0.10 },
+    { upTo: 23_850, rate: 0.1 },
     { upTo: 96_950, rate: 0.12 },
     { upTo: 206_700, rate: 0.22 },
     { upTo: 394_600, rate: 0.24 },
     { upTo: 501_050, rate: 0.32 },
     { upTo: 751_600, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
   married_separate: [
-    { upTo: 11_925, rate: 0.10 },
+    { upTo: 11_925, rate: 0.1 },
     { upTo: 48_475, rate: 0.12 },
     { upTo: 103_350, rate: 0.22 },
     { upTo: 197_300, rate: 0.24 },
     { upTo: 250_525, rate: 0.32 },
     { upTo: 375_800, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
   head_of_household: [
-    { upTo: 17_000, rate: 0.10 },
+    { upTo: 17_000, rate: 0.1 },
     { upTo: 64_850, rate: 0.12 },
     { upTo: 103_350, rate: 0.22 },
     { upTo: 197_300, rate: 0.24 },
     { upTo: 250_500, rate: 0.32 },
     { upTo: 626_350, rate: 0.35 },
-    { upTo: Infinity, rate: 0.37 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.37 },
   ],
 };
 
 // Standard deductions by year
 const STANDARD_DEDUCTIONS: Record<number, Record<FilingStatus, number>> = {
-  2024: { single: 14_600, married_joint: 29_200, married_separate: 14_600, head_of_household: 21_900 },
-  2025: { single: 15_000, married_joint: 30_000, married_separate: 15_000, head_of_household: 22_500 },
+  2024: {
+    single: 14_600,
+    married_joint: 29_200,
+    married_separate: 14_600,
+    head_of_household: 21_900,
+  },
+  2025: {
+    single: 15_000,
+    married_joint: 30_000,
+    married_separate: 15_000,
+    head_of_household: 22_500,
+  },
 };
 
 // QBI phase-out thresholds (taxable income before QBI deduction)
 // Below lower → full 20% deduction. Above upper → $0 (sole prop, no W-2 wages/property).
 const QBI_THRESHOLDS: Record<number, Record<FilingStatus, { lower: number; upper: number }>> = {
   2024: {
-    single:            { lower: 191_950, upper: 241_950 },
-    married_joint:     { lower: 383_900, upper: 483_900 },
-    married_separate:  { lower: 191_950, upper: 241_950 },
+    single: { lower: 191_950, upper: 241_950 },
+    married_joint: { lower: 383_900, upper: 483_900 },
+    married_separate: { lower: 191_950, upper: 241_950 },
     head_of_household: { lower: 191_950, upper: 241_950 },
   },
   2025: {
-    single:            { lower: 197_300, upper: 247_300 },
-    married_joint:     { lower: 394_600, upper: 494_600 },
-    married_separate:  { lower: 197_300, upper: 247_300 },
+    single: { lower: 197_300, upper: 247_300 },
+    married_joint: { lower: 394_600, upper: 494_600 },
+    married_separate: { lower: 197_300, upper: 247_300 },
     head_of_household: { lower: 197_300, upper: 247_300 },
   },
 };
@@ -158,7 +168,7 @@ export function applyBrackets(taxableIncome: number, brackets: TaxBracket[]): nu
     const taxableInBracket = Math.min(taxableIncome, bracket.upTo) - prev;
     tax += taxableInBracket * bracket.rate;
     prev = bracket.upTo;
-    if (bracket.upTo === Infinity) break;
+    if (bracket.upTo === Number.POSITIVE_INFINITY) break;
   }
   return Math.round(tax);
 }
@@ -198,7 +208,7 @@ export function computeSeTax(netSEIncome: number, w2Income: number, year: number
 // QBI deduction (Section 199A) — sole proprietor, no W-2 wages or property
 // ---------------------------------------------------------------------------
 export function computeQbiDeduction(
-  qbiIncome: number,      // net SE income
+  qbiIncome: number, // net SE income
   tentativeTaxableIncome: number, // AGI - std deduction (before QBI)
   year: number,
   status: FilingStatus,
@@ -206,7 +216,7 @@ export function computeQbiDeduction(
   if (qbiIncome <= 0) return 0;
 
   const { lower, upper } = getQbiThresholds(year, status);
-  const tentative = qbiIncome * 0.20;
+  const tentative = qbiIncome * 0.2;
 
   if (tentativeTaxableIncome <= lower) {
     return Math.round(tentative);
@@ -226,22 +236,22 @@ export function computeQbiDeduction(
 // ---------------------------------------------------------------------------
 export interface FederalTaxInput {
   grossCreatorIncome: number; // annual integer dollars
-  businessExpenses: number;   // annual integer dollars
+  businessExpenses: number; // annual integer dollars
   filingStatus: FilingStatus;
-  w2Income: number;           // annual integer dollars (gross W-2)
+  w2Income: number; // annual integer dollars (gross W-2)
   taxYear: number;
 }
 
 export interface FederalTaxResult {
-  netSEIncome: number;        // grossCreatorIncome - businessExpenses
+  netSEIncome: number; // grossCreatorIncome - businessExpenses
   seTax: number;
   halfSeTaxDeduction: number; // deducted from AGI
-  agi: number;                // adjusted gross income
+  agi: number; // adjusted gross income
   standardDeduction: number;
   qbiDeduction: number;
   taxableIncome: number;
   incomeTax: number;
-  totalFederal: number;       // incomeTax + seTax
+  totalFederal: number; // incomeTax + seTax
 }
 
 export function computeFederalTax(input: FederalTaxInput): FederalTaxResult {
@@ -263,7 +273,12 @@ export function computeFederalTax(input: FederalTaxInput): FederalTaxResult {
   const tentativeTaxableIncome = Math.max(0, agi - standardDeduction);
 
   // QBI deduction (20% of net SE income, subject to phase-out)
-  const qbiDeduction = computeQbiDeduction(netSEIncome, tentativeTaxableIncome, taxYear, filingStatus);
+  const qbiDeduction = computeQbiDeduction(
+    netSEIncome,
+    tentativeTaxableIncome,
+    taxYear,
+    filingStatus,
+  );
 
   // Final taxable income
   const taxableIncome = Math.max(0, tentativeTaxableIncome - qbiDeduction);

@@ -1,8 +1,8 @@
 // Unit tests for computeStateTax — ≥20 scenarios.
 // Source: state department of revenue publications (2024/2025 rates).
 
-import { describe, expect, it } from "vitest";
 import { computeStateTax } from "@/lib/tax/state";
+import { describe, expect, it } from "vitest";
 
 const AGI = 80_000; // federal AGI used as base for all tests
 

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 // Critical-path E2E: landing page → waitlist signup form → success state
 // This test mocks the API so it doesn't require live credentials.

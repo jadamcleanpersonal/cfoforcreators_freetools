@@ -1,8 +1,8 @@
 // Unit tests for quarterly payment logic.
 // Covers all 4 quarters, catch-up case, "no" verdict, and deadline accuracy.
 
-import { describe, expect, it } from "vitest";
 import { computeQuarterlyPayment, getDeadline, quartersElapsed } from "@/lib/tax/quarterly";
+import { describe, expect, it } from "vitest";
 
 const BASE = {
   safeHarborThreshold: 12_000, // $3,000/quarter

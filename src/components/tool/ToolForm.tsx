@@ -1,11 +1,11 @@
 "use client";
 
+import { US_STATES } from "@/data/states";
+import type { ToolDefinition } from "@/tools/_types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import type { ToolDefinition } from "@/tools/_types";
 import type { z } from "zod";
-import { US_STATES } from "@/data/states";
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,7 +47,9 @@ export default function ToolForm({ tool, onResult }: Props) {
 
       // Scroll to results
       setTimeout(() => {
-        document.querySelector("[aria-live]")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document
+          .querySelector("[aria-live]")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Try again.");
@@ -64,21 +66,17 @@ export default function ToolForm({ tool, onResult }: Props) {
 
         return (
           <div key={field.name} className="space-y-2">
-            <label
-              htmlFor={field.name}
-              className="block text-sm font-medium text-ink"
-            >
+            <label htmlFor={field.name} className="block text-sm font-medium text-ink">
               {field.label}
               {field.required !== false && (
-                <span className="text-danger ml-1" aria-hidden="true">*</span>
+                <span className="text-danger ml-1" aria-hidden="true">
+                  *
+                </span>
               )}
             </label>
 
             {field.helpText && (
-              <p
-                id={`${field.name}-help`}
-                className="text-sm text-ink-muted"
-              >
+              <p id={`${field.name}-help`} className="text-sm text-ink-muted">
                 {field.helpText}
               </p>
             )}
@@ -141,11 +139,7 @@ export default function ToolForm({ tool, onResult }: Props) {
             )}
 
             {field.type === "radio" && field.options && (
-              <div
-                role="radiogroup"
-                aria-labelledby={`${field.name}-label`}
-                className="space-y-2"
-              >
+              <div role="radiogroup" aria-labelledby={`${field.name}-label`} className="space-y-2">
                 {field.options.map((opt) => (
                   <label
                     key={opt.value}

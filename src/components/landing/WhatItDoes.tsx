@@ -41,7 +41,10 @@ export default function WhatItDoes() {
       <ul className="space-y-4">
         {FEATURES.map((f) => (
           <li key={f.headline} className="flex items-start gap-3">
-            <span className="mt-1.5 w-2 h-2 rounded-full bg-brand flex-shrink-0" aria-hidden="true" />
+            <span
+              className="mt-1.5 w-2 h-2 rounded-full bg-brand flex-shrink-0"
+              aria-hidden="true"
+            />
             <span className="text-base text-ink leading-relaxed">
               <strong>{f.headline}.</strong> {f.body}
             </span>

@@ -15,9 +15,7 @@ export interface DeepDiveConfirmationInput {
 /**
  * Send the auto-confirmation email to a founder video walkthrough intake submitter.
  */
-export async function sendDeepDiveConfirmation(
-  input: DeepDiveConfirmationInput,
-): Promise<void> {
+export async function sendDeepDiveConfirmation(input: DeepDiveConfirmationInput): Promise<void> {
   const name = input.firstName ?? "there";
 
   await resend.emails.send({

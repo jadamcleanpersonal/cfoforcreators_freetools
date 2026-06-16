@@ -2,17 +2,17 @@
 // URL: /tax-estimator/result/[id]
 // Result URLs must remain stable forever — never change the snapshot shape.
 
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import type { z } from "zod";
-import { supabaseAdmin } from "@/lib/supabase/admin";
-import ToolResult from "@/components/tool/ToolResult";
-import ToolExplainer from "@/components/tool/ToolExplainer";
-import ToolShareBlock from "@/components/tool/ToolShareBlock";
 import ToolCrossPromo from "@/components/tool/ToolCrossPromo";
-import taxEstimator from "@/tools/tax-estimator";
-import type { ToolDefinition } from "@/tools/_types";
+import ToolExplainer from "@/components/tool/ToolExplainer";
+import ToolResult from "@/components/tool/ToolResult";
+import ToolShareBlock from "@/components/tool/ToolShareBlock";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { TaxEstimatorOutput } from "@/lib/tax";
+import type { ToolDefinition } from "@/tools/_types";
+import taxEstimator from "@/tools/tax-estimator";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import type { z } from "zod";
 
 // Cast to generic interface — type safety maintained inside the tool module.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,20 +78,14 @@ export default async function TaxEstimatorResultPage({ params }: Props) {
       <header className="space-y-2">
         <p className="text-sm text-ink-muted">someone shared their quarterly tax estimate</p>
         <h1 className="text-2xl font-bold text-ink">quarterly tax estimate</h1>
-        <a
-          href="/tax-estimator"
-          className="inline-block text-sm text-brand hover:underline"
-        >
+        <a href="/tax-estimator" className="inline-block text-sm text-brand hover:underline">
           calculate your own →
         </a>
       </header>
 
       <ToolResult tool={tool} result={result} />
 
-      <ToolExplainer
-        slug={taxEstimator.explainerSlug}
-        excerpt={taxEstimator.explainerExcerpt}
-      />
+      <ToolExplainer slug={taxEstimator.explainerSlug} excerpt={taxEstimator.explainerExcerpt} />
 
       <ToolShareBlock tool={tool} result={result} />
 

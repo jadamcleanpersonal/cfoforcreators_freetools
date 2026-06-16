@@ -12,8 +12,8 @@ export type Quarter = "q1" | "q2" | "q3" | "q4";
 export type Verdict = "yes" | "no" | "wait";
 
 export interface QuarterDeadline {
-  label: string;     // "April 15, 2025"
-  isoDate: string;   // "2025-04-15"
+  label: string; // "April 15, 2025"
+  isoDate: string; // "2025-04-15"
 }
 
 // Deadlines keyed by tax year and quarter
@@ -57,25 +57,28 @@ const UNDERPAYMENT_PENALTY_ANNUAL_RATE = 0.08;
 function estimatedDaysPastDue(quarter: Quarter, taxYear: number, currentQuarter: Quarter): number {
   const currentDate = new Date();
   const dueDate = new Date(getDeadline(taxYear, quarter).isoDate);
-  const daysPast = Math.max(0, Math.round((currentDate.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24)));
+  const daysPast = Math.max(
+    0,
+    Math.round((currentDate.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24)),
+  );
   return daysPast;
 }
 
 export interface QuarterlyPaymentInput {
-  safeHarborThreshold: number;     // annual safe harbor amount (from computeSafeHarbor)
+  safeHarborThreshold: number; // annual safe harbor amount (from computeSafeHarbor)
   alreadyPaidEstimatedTaxes: number; // YTD estimated tax payments
-  withholdingFromW2: number;        // YTD W-2 federal withholding
+  withholdingFromW2: number; // YTD W-2 federal withholding
   currentQuarter: Quarter;
   taxYear: number;
 }
 
 export interface QuarterlyPaymentResult {
   verdict: Verdict;
-  amountDueThisQuarter: number;    // integer $, 0 if verdict is "no"
+  amountDueThisQuarter: number; // integer $, 0 if verdict is "no"
   totalPaidToDate: number;
   shouldHavePaidToDate: number;
-  underpaidAmount: number;          // > 0 only in "wait"
-  penaltyEstimate: number;          // > 0 only in "wait"
+  underpaidAmount: number; // > 0 only in "wait"
+  penaltyEstimate: number; // > 0 only in "wait"
   deadline: QuarterDeadline;
   verdictHeadline: string;
   verdictReason: string;
@@ -122,10 +125,7 @@ export function computeQuarterlyPayment(input: QuarterlyPaymentInput): Quarterly
 
   // "wait": they're behind on PAST quarters (not just the current one)
   // Triggered when total paid < what should have been paid by the END OF THE PRIOR quarter
-  const priorQuarterAmount =
-    elapsed > 1
-      ? Math.ceil((safeHarborThreshold / 4) * (elapsed - 1))
-      : 0;
+  const priorQuarterAmount = elapsed > 1 ? Math.ceil((safeHarborThreshold / 4) * (elapsed - 1)) : 0;
 
   const behindOnPriorQuarters = elapsed > 1 && totalPaidToDate < priorQuarterAmount;
 
@@ -141,7 +141,9 @@ export function computeQuarterlyPayment(input: QuarterlyPaymentInput): Quarterly
       const paidThisQuarter = totalPaidToDate >= quarterShare * q ? 0 : quarterShare;
       const days = estimatedDaysPastDue(priorQ, taxYear, currentQuarter);
       if (days > 0 && paidThisQuarter > 0) {
-        penaltyEstimate += Math.round(paidThisQuarter * UNDERPAYMENT_PENALTY_ANNUAL_RATE * (days / 365));
+        penaltyEstimate += Math.round(
+          paidThisQuarter * UNDERPAYMENT_PENALTY_ANNUAL_RATE * (days / 365),
+        );
       }
     }
     // Floor at a minimum estimate
@@ -171,7 +173,10 @@ export function computeQuarterlyPayment(input: QuarterlyPaymentInput): Quarterly
   // "yes": on track, here's this quarter's payment
   return {
     verdict: "yes",
-    amountDueThisQuarter: Math.max(0, thisQuarterShare - Math.max(0, totalPaidToDate - priorQuarterAmount)),
+    amountDueThisQuarter: Math.max(
+      0,
+      thisQuarterShare - Math.max(0, totalPaidToDate - priorQuarterAmount),
+    ),
     totalPaidToDate,
     shouldHavePaidToDate,
     underpaidAmount: 0,

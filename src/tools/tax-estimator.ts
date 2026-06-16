@@ -2,10 +2,10 @@
 // Zod schema validates client + server (single source of truth).
 // computeTaxEstimate is imported from src/lib/tax/index.ts — no math in this file.
 
-import { z } from "zod";
-import type { ToolDefinition, ResultDisplay } from "./_types";
-import { computeTaxEstimate, type TaxEstimatorOutput } from "@/lib/tax";
 import { STATE_CODES } from "@/data/states";
+import { type TaxEstimatorOutput, computeTaxEstimate } from "@/lib/tax";
+import { z } from "zod";
+import type { ResultDisplay, ToolDefinition } from "./_types";
 
 // ── Input schema ─────────────────────────────────────────────────────────────
 export const taxEstimatorInputSchema = z.object({
@@ -63,7 +63,11 @@ export type TaxEstimatorOutput_ = z.infer<typeof taxEstimatorOutputSchema>;
 // ── renderResult: converts TaxEstimatorOutput → ResultDisplay ────────────────
 function renderResult(output: TaxEstimatorOutput, input: TaxEstimatorInput): ResultDisplay {
   const fmt = (n: number) =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(n);
 
   const pct = (r: number) => `${(r * 100).toFixed(1)}%`;
 
@@ -75,11 +79,17 @@ function renderResult(output: TaxEstimatorOutput, input: TaxEstimatorInput): Res
   ];
 
   if (output.federalBreakdown.qbiDeduction > 0) {
-    breakdown.push({ label: "QBI deduction (20% pass-through)", value: `−${fmt(output.federalBreakdown.qbiDeduction)}` });
+    breakdown.push({
+      label: "QBI deduction (20% pass-through)",
+      value: `−${fmt(output.federalBreakdown.qbiDeduction)}`,
+    });
   }
 
   if (output.stateTax > 0) {
-    breakdown.push({ label: `${output.stateName} state tax (annual)`, value: fmt(output.stateTax) });
+    breakdown.push({
+      label: `${output.stateName} state tax (annual)`,
+      value: fmt(output.stateTax),
+    });
   } else {
     breakdown.push({ label: `${output.stateName} state tax`, value: "$0 (no income tax)" });
   }
@@ -89,13 +99,13 @@ function renderResult(output: TaxEstimatorOutput, input: TaxEstimatorInput): Res
   breakdown.push({ label: "effective tax rate", value: pct(output.effectiveRate) });
 
   if (output.catchUpPenaltyEstimate !== undefined && output.catchUpPenaltyEstimate > 0) {
-    breakdown.push({ label: "estimated underpayment penalty", value: `~${fmt(output.catchUpPenaltyEstimate)}` });
+    breakdown.push({
+      label: "estimated underpayment penalty",
+      value: `~${fmt(output.catchUpPenaltyEstimate)}`,
+    });
   }
 
-  const headlineNumber =
-    output.verdict === "no"
-      ? "$0 due"
-      : fmt(output.amountThisQuarter);
+  const headlineNumber = output.verdict === "no" ? "$0 due" : fmt(output.amountThisQuarter);
 
   const headline =
     output.verdict === "no"
@@ -108,8 +118,8 @@ function renderResult(output: TaxEstimatorOutput, input: TaxEstimatorInput): Res
     output.verdict === "wait"
       ? `send ${fmt(output.amountThisQuarter)} to irs direct pay (directpay.irs.gov) to stop the underpayment clock.`
       : output.verdict === "yes"
-      ? `send ${fmt(output.amountThisQuarter)} to irs direct pay by ${output.deadline}. takes about 3 minutes.`
-      : undefined;
+        ? `send ${fmt(output.amountThisQuarter)} to irs direct pay by ${output.deadline}. takes about 3 minutes.`
+        : undefined;
 
   const caveat =
     `estimate based on ${pct(0.9)}-of-projected-tax safe harbor. ` +
@@ -135,7 +145,8 @@ function renderResult(output: TaxEstimatorOutput, input: TaxEstimatorInput): Res
 const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> = {
   slug: "tax-estimator",
   title: "free quarterly tax calculator for creators",
-  oneLiner: "plug in your creator income. get the exact dollar amount to send the IRS this quarter.",
+  oneLiner:
+    "plug in your creator income. get the exact dollar amount to send the IRS this quarter.",
   metaTitle: "quarterly tax calculator for content creators — free, no signup",
   metaDescription:
     "free tool. plug in your creator income and expenses. get the exact amount to send the IRS this quarter, including state tax. no signup needed.",
@@ -183,7 +194,8 @@ const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> =
     {
       name: "current_quarter",
       label: "which quarter are you filing for?",
-      helpText: "Q1 = Jan–Mar (due Apr 15) · Q2 = Apr–May (due Jun 15) · Q3 = Jun–Aug (due Sep 15) · Q4 = Sep–Dec (due Jan 15)",
+      helpText:
+        "Q1 = Jan–Mar (due Apr 15) · Q2 = Apr–May (due Jun 15) · Q3 = Jun–Aug (due Sep 15) · Q4 = Sep–Dec (due Jan 15)",
       type: "radio",
       options: [
         { value: "q1", label: "Q1 (due Apr 15)" },

@@ -1,8 +1,8 @@
 // Verdict integration tests — must hit all three paths with creator-specific inputs.
 // These are the high-stakes tests: wrong verdicts are misleading to creators.
 
-import { describe, expect, it } from "vitest";
 import { computeTaxEstimate } from "@/lib/tax";
+import { describe, expect, it } from "vitest";
 
 // ── "yes" path ────────────────────────────────────────────────────────────────
 // Creator with $80k income, $15k expenses, paid Q1+Q2 on time, asking about Q3.

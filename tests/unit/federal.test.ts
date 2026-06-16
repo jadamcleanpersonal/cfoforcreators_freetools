@@ -2,18 +2,23 @@
 // ≥30 scenarios. Tolerance: within $50 (rounding + minor methodology differences vs IRS worksheet).
 // Sources noted per scenario. All dollar values are integers.
 
+import {
+  applyBrackets,
+  computeFederalTax,
+  computeQbiDeduction,
+  computeSeTax,
+} from "@/lib/tax/federal";
 import { describe, expect, it } from "vitest";
-import { computeFederalTax, applyBrackets, computeSeTax, computeQbiDeduction } from "@/lib/tax/federal";
 
 // ---------------------------------------------------------------------------
 // applyBrackets — isolated bracket math
 // ---------------------------------------------------------------------------
 describe("applyBrackets", () => {
   const singleBrackets2025 = [
-    { upTo: 11_925, rate: 0.10 },
+    { upTo: 11_925, rate: 0.1 },
     { upTo: 48_475, rate: 0.12 },
     { upTo: 103_350, rate: 0.22 },
-    { upTo: Infinity, rate: 0.24 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.24 },
   ];
 
   it("returns 0 for zero income", () => {
@@ -66,9 +71,7 @@ describe("computeSeTax", () => {
     const ssWageBase = 176_100;
     const earnings = 300_000 * 0.9235;
     const expected = Math.round(
-      ssWageBase * 0.124 +
-      earnings * 0.029 +
-      Math.max(0, (earnings - 200_000) * 0.009)
+      ssWageBase * 0.124 + earnings * 0.029 + Math.max(0, (earnings - 200_000) * 0.009),
     );
     expect(tax).toBeCloseTo(expected, -1);
   });
@@ -338,7 +341,7 @@ describe("computeFederalTax", () => {
       taxYear: 2025,
     });
     // tentative taxable income ~$150k, below $197,300 threshold → full QBI
-    expect(r.qbiDeduction).toBeCloseTo(190_000 * 0.20, -1);
+    expect(r.qbiDeduction).toBeCloseTo(190_000 * 0.2, -1);
   });
 
   // Scenario 15: $120k income / $15k expenses / single / 2025
@@ -404,7 +407,7 @@ describe("computeFederalTax", () => {
         w2Income: 0,
         taxYear: 2025,
       });
-      const maxQbi = Math.round((income - expenses) * 0.20);
+      const maxQbi = Math.round((income - expenses) * 0.2);
       expect(r.qbiDeduction).toBeLessThanOrEqual(maxQbi + 1); // +1 for rounding
     }
   });

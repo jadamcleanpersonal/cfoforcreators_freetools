@@ -6,10 +6,7 @@ export default function Footer() {
         <div className="flex items-center gap-4">
           {/* Twitter/X — swap in real handle once set */}
           {/* <a href="https://twitter.com/TODO" target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">x/twitter</a> */}
-          <a
-            href="mailto:hello@thecfoforcreators.com"
-            className="hover:text-ink transition-colors"
-          >
+          <a href="mailto:hello@thecfoforcreators.com" className="hover:text-ink transition-colors">
             hello@thecfoforcreators.com
           </a>
         </div>

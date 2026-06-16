@@ -1,7 +1,7 @@
 // Unit tests for computeSafeHarbor
 
-import { describe, expect, it } from "vitest";
 import { computeSafeHarbor } from "@/lib/tax/safe_harbor";
+import { describe, expect, it } from "vitest";
 
 describe("computeSafeHarbor", () => {
   it("threshold is 90% of projected annual tax", () => {

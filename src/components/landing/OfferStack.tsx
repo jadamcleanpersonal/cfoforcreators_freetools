@@ -1,5 +1,5 @@
-import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import SpotsCounter from "@/components/waitlist/SpotsCounter";
+import WaitlistForm from "@/components/waitlist/WaitlistForm";
 
 const WAITLIST_PERKS = [
   "weekly creator finance newsletter. 4-minute reads, no fluff.",
@@ -31,7 +31,9 @@ export default function OfferStack() {
       {/* First 100 */}
       <div className="rounded-2xl border border-brand/30 bg-brand/5 p-6 space-y-4">
         <div className="flex items-start gap-3">
-          <span className="text-2xl flex-shrink-0" aria-hidden="true">🎯</span>
+          <span className="text-2xl flex-shrink-0" aria-hidden="true">
+            🎯
+          </span>
           <div className="space-y-3">
             <h3 className="text-xl font-bold text-ink">
               first 100 get a personal video walkthrough from the founder.

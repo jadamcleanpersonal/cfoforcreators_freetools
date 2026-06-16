@@ -13,7 +13,7 @@
 // income is growing. We flag this in the methodology explainer.
 
 export interface SafeHarborResult {
-  threshold: number;       // integer dollars — total annual payment needed for safe harbor
+  threshold: number; // integer dollars — total annual payment needed for safe harbor
   methodologyNote: string; // shown in result caveat
 }
 

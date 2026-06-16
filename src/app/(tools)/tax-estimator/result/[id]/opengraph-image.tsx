@@ -1,9 +1,9 @@
 // Dynamic OG image for shared tax estimator results.
 // Rendered at /tax-estimator/result/[id]/opengraph-image
 
-import { ImageResponse } from "next/og";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { TaxEstimatorOutput } from "@/lib/tax";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt = "quarterly tax estimate";
@@ -35,71 +35,67 @@ export default async function OGImage({ params }: Props) {
     maximumFractionDigits: 0,
   }).format(amount);
 
-  const verdictColor =
-    verdict === "yes" ? "#16a34a" : verdict === "no" ? "#dc2626" : "#d97706";
+  const verdictColor = verdict === "yes" ? "#16a34a" : verdict === "no" ? "#dc2626" : "#d97706";
 
   const headline =
-    verdict === "no"
-      ? "no quarterly payment needed"
-      : `${fmtAmount} due by ${deadline}`;
+    verdict === "no" ? "no quarterly payment needed" : `${fmtAmount} due by ${deadline}`;
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          backgroundColor: "#fafaf9",
-          padding: "64px",
-          fontFamily: "system-ui, sans-serif",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <div
-            style={{
-              backgroundColor: verdictColor,
-              color: "white",
-              borderRadius: "9999px",
-              padding: "6px 16px",
-              fontSize: "18px",
-              fontWeight: 700,
-              letterSpacing: "0.05em",
-            }}
-          >
-            {verdict.toUpperCase()}
-          </div>
-          <span style={{ fontSize: "18px", color: "#78716c" }}>quarterly tax estimate</span>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        backgroundColor: "#fafaf9",
+        padding: "64px",
+        fontFamily: "system-ui, sans-serif",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div
+          style={{
+            backgroundColor: verdictColor,
+            color: "white",
+            borderRadius: "9999px",
+            padding: "6px 16px",
+            fontSize: "18px",
+            fontWeight: 700,
+            letterSpacing: "0.05em",
+          }}
+        >
+          {verdict.toUpperCase()}
         </div>
-
-        <div>
-          <div
-            style={{
-              fontSize: "72px",
-              fontWeight: 800,
-              color: "#1c1917",
-              lineHeight: 1.1,
-              marginBottom: "16px",
-            }}
-          >
-            {headline}
-          </div>
-          {outputs.stateName && (
-            <div style={{ fontSize: "24px", color: "#78716c" }}>
-              {outputs.stateName} · {outputs.effectiveRate !== undefined
-                ? `${(outputs.effectiveRate * 100).toFixed(1)}% effective rate`
-                : ""}
-            </div>
-          )}
-        </div>
-
-        <div style={{ fontSize: "20px", color: "#78716c" }}>
-          thecfoforcreators.com — free tools for content creators
-        </div>
+        <span style={{ fontSize: "18px", color: "#78716c" }}>quarterly tax estimate</span>
       </div>
-    ),
+
+      <div>
+        <div
+          style={{
+            fontSize: "72px",
+            fontWeight: 800,
+            color: "#1c1917",
+            lineHeight: 1.1,
+            marginBottom: "16px",
+          }}
+        >
+          {headline}
+        </div>
+        {outputs.stateName && (
+          <div style={{ fontSize: "24px", color: "#78716c" }}>
+            {outputs.stateName} ·{" "}
+            {outputs.effectiveRate !== undefined
+              ? `${(outputs.effectiveRate * 100).toFixed(1)}% effective rate`
+              : ""}
+          </div>
+        )}
+      </div>
+
+      <div style={{ fontSize: "20px", color: "#78716c" }}>
+        thecfoforcreators.com — free tools for content creators
+      </div>
+    </div>,
     { ...size },
   );
 }

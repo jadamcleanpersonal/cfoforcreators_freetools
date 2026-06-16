@@ -4,9 +4,9 @@
 // Every tool result includes this. Not optional per CLAUDE.md.
 // The model receives inputs + outputs + verdict as context.
 
-import { useChat } from "ai/react";
 import { Events } from "@/lib/posthog";
 import type { ToolDefinition } from "@/tools/_types";
+import { useChat } from "ai/react";
 import type { z } from "zod";
 
 interface Props {

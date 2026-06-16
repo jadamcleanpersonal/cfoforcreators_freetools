@@ -14,7 +14,7 @@ function applyStateBrackets(taxableIncome: number, brackets: StateTaxBracket[]):
     const inBracket = Math.min(taxableIncome, bracket.upTo) - prev;
     tax += inBracket * bracket.rate;
     prev = bracket.upTo;
-    if (bracket.upTo === Infinity) break;
+    if (bracket.upTo === Number.POSITIVE_INFINITY) break;
   }
   return Math.round(tax);
 }
@@ -22,7 +22,7 @@ function applyStateBrackets(taxableIncome: number, brackets: StateTaxBracket[]):
 export interface StateTaxResult {
   stateTax: number;
   taxType: "none" | "flat" | "bracket";
-  rate?: number;   // effective rate for display
+  rate?: number; // effective rate for display
   note?: string;
 }
 
@@ -57,9 +57,9 @@ export function computeStateTax(
 
   // Determine state standard deduction
   const stdDed = data.standardDeduction
-    ? (filingStatus === "married_joint"
-        ? data.standardDeduction.married_joint
-        : data.standardDeduction.single)
+    ? filingStatus === "married_joint"
+      ? data.standardDeduction.married_joint
+      : data.standardDeduction.single
     : 0;
 
   const stateTaxableIncome = Math.max(0, federalAgi - stdDed);
@@ -73,9 +73,7 @@ export function computeStateTax(
   if (data.taxType === "bracket" && data.brackets) {
     const isJoint = filingStatus === "married_joint";
     const brackets =
-      isJoint && data.brackets.married_joint
-        ? data.brackets.married_joint
-        : data.brackets.single;
+      isJoint && data.brackets.married_joint ? data.brackets.married_joint : data.brackets.single;
 
     const stateTax = applyStateBrackets(stateTaxableIncome, brackets);
     const effectiveRate = federalAgi > 0 ? stateTax / federalAgi : 0;

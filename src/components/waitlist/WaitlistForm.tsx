@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { Events } from "@/lib/posthog";
+import { useState } from "react";
 
 interface Props {
   source?: string;
@@ -61,7 +61,9 @@ export default function WaitlistForm({
 
   if (submitted) {
     return (
-      <div className={`rounded-xl border border-brand/30 bg-brand/5 px-5 py-4 space-y-1 ${className}`}>
+      <div
+        className={`rounded-xl border border-brand/30 bg-brand/5 px-5 py-4 space-y-1 ${className}`}
+      >
         <p className="font-semibold text-brand">you&apos;re on the list.</p>
         <p className="text-sm text-ink-muted">
           check your inbox. we&apos;ll send each new tool as it goes live.

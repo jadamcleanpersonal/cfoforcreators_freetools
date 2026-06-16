@@ -1,5 +1,5 @@
+import { allTools, getToolBySlug } from "@/tools/_registry";
 import Link from "next/link";
-import { getToolBySlug, allTools } from "@/tools/_registry";
 
 interface Props {
   currentSlug: string;
@@ -21,8 +21,8 @@ export default function ToolCrossPromo({ currentSlug, related }: Props) {
         <aside className="rounded-2xl border border-border p-5 space-y-3">
           <h2 className="text-base font-semibold text-ink">More tools coming soon</h2>
           <p className="text-sm text-ink-muted">
-            S-corp calculator, LLC chooser, retirement account selector, sponsor rate benchmark,
-            and brand contract scanner are all in the pipeline.
+            S-corp calculator, LLC chooser, retirement account selector, sponsor rate benchmark, and
+            brand contract scanner are all in the pipeline.
           </p>
           <a
             href="/#waitlist"

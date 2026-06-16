@@ -29,9 +29,7 @@ export async function subscribe(input: SubscribeInput): Promise<string> {
       reactivate_existing: true,
       send_welcome_email: true,
       utm_source: input.source,
-      custom_fields: input.firstName
-        ? [{ name: "first_name", value: input.firstName }]
-        : [],
+      custom_fields: input.firstName ? [{ name: "first_name", value: input.firstName }] : [],
     }),
   });
 
@@ -54,17 +52,14 @@ export async function subscribe(input: SubscribeInput): Promise<string> {
  * Apply tags to an existing Beehiiv subscriber.
  */
 export async function tag(subscriberId: string, tags: string[]): Promise<void> {
-  const res = await fetch(
-    `${BASE}/publications/${PUB}/subscriptions/${subscriberId}/tags`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ tags }),
+  const res = await fetch(`${BASE}/publications/${PUB}/subscriptions/${subscriberId}/tags`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${KEY}`,
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({ tags }),
+  });
 
   if (!res.ok) {
     const text = await res.text();
