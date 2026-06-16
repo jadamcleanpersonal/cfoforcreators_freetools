@@ -6,20 +6,18 @@ export default function Hero() {
     <section className="py-16 sm:py-24 space-y-8">
       <div className="space-y-4">
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-ink leading-tight">
-          your channel pays you. your finances never quite add up.
+          you make the money. you&apos;re scared to look at your bank account.
         </h1>
         <p className="text-xl text-ink-muted leading-relaxed max-w-2xl">
-          An AI CFO built for content creators. Get straight answers on taxes, sponsor rates,
-          write-offs, and where your money&apos;s actually going &mdash; without becoming your own
-          accountant.
+          figure out what you owe in taxes, what to charge for sponsorships, and what you can
+          actually write off. without becoming your own accountant.
         </p>
         <p className="text-base text-ink-muted">
-          Coming soon. Join the waitlist to be first in line &mdash; and grab one of 100 personal
-          financial deep-dives from our founder.
+          join the waitlist. first 100 get a personal video walkthrough.
         </p>
       </div>
 
-      <WaitlistForm source="landing-hero" ctaText="Join the waitlist \u2192" />
+      <WaitlistForm source="landing-hero" ctaText="join the waitlist →" />
 
       {/* Spots counter — visual centerpiece */}
       <div className="flex items-center gap-2">

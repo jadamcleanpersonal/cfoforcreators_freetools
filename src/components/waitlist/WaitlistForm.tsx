@@ -19,7 +19,7 @@ function trackEvent(event: string, props?: Record<string, unknown>) {
 
 export default function WaitlistForm({
   source = "landing",
-  ctaText = "Join the waitlist \u2192",
+  ctaText = "Join the waitlist →",
   placeholder = "your@email.com",
   className = "",
 }: Props) {

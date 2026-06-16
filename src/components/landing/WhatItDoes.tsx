@@ -1,42 +1,41 @@
 const FEATURES = [
   {
-    headline: "Tells you exactly what to set aside for taxes",
-    body: "Every time a payment hits, based on your real numbers and your state.",
+    headline: "tells you what to save for taxes every time you get paid",
+    body: "your real numbers, your state.",
   },
   {
-    headline: "Forecasts your cash flow",
-    body: "30 / 60 / 90 days out across every platform you use.",
+    headline: "shows you what's coming in over the next 30, 60, 90 days",
+    body: "across every platform.",
   },
   {
-    headline: "Tracks every brand invoice",
-    body: "Who paid, who's late, who needs a follow-up today.",
+    headline: "tracks every brand deal",
+    body: "who paid, who's late, who needs a nudge today.",
   },
   {
-    headline: "Categorizes your business write-offs automatically",
-    body: "So tax season isn't a 3-day reconstruction project.",
+    headline: "sorts your write-offs automatically",
+    body: "no more april reconstruction project.",
   },
   {
-    headline: "Models the big decisions",
-    body: "Should you switch to S-corp? When can you afford to hire an editor? Will the bank approve your mortgage as a YouTuber?",
+    headline: "answers the questions your accountant won't",
+    body: "should you switch to s-corp? can you afford an editor? will a bank approve your mortgage?",
   },
   {
-    headline: "Drafts the work for you",
-    body: "Invoices, follow-up emails, accountant briefs, IRS payment instructions. You click send.",
+    headline: "writes the boring stuff for you",
+    body: "invoices, follow-up emails, irs payments. you click send.",
   },
   {
-    headline: "Talks to you in plain English",
-    body: "No jargon. No deflection.",
+    headline: "talks to you in plain english",
+    body: "no jargon. no “talk to your accountant” deflection.",
   },
 ];
 
 export default function WhatItDoes() {
   return (
     <section className="py-12 space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold text-ink">the AI CFO, in plain english</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold text-ink">what gets handled</h2>
 
       <p className="text-base text-ink-muted leading-relaxed">
-        Once it&apos;s connected to your accounts (Plaid, YouTube, Patreon, Twitch &mdash;
-        read-only):
+        once you connect your accounts (read-only, never moves money):
       </p>
 
       <ul className="space-y-4">
@@ -44,16 +43,14 @@ export default function WhatItDoes() {
           <li key={f.headline} className="flex items-start gap-3">
             <span className="mt-1.5 w-2 h-2 rounded-full bg-brand flex-shrink-0" aria-hidden="true" />
             <span className="text-base text-ink leading-relaxed">
-              <strong>{f.headline}</strong> &mdash; {f.body}
+              <strong>{f.headline}.</strong> {f.body}
             </span>
           </li>
         ))}
       </ul>
 
-      <p className="text-base text-ink-muted leading-relaxed border-l-2 border-brand pl-4">
-        It&apos;s not a bank. It&apos;s not a CPA. It&apos;s not a budgeting app. It&apos;s the
-        financial operator that sits between you and the real professionals &mdash; making sure they
-        have what they need and making sure you know what&apos;s actually going on.
+      <p className="text-base text-ink leading-relaxed border-l-2 border-brand pl-4">
+        not a bank. not an accountant. just the money side of your channel, handled.
       </p>
     </section>
   );

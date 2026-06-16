@@ -33,7 +33,7 @@ export async function sendDeepDiveConfirmation(
         <li>No charge. No catch.</li>
       </ul>
       <p>In the meantime, if you haven't tried the free tools yet — the quarterly tax estimator is the most useful place to start: <a href="https://thecfoforcreators.com/tax-estimator">thecfoforcreators.com/tax-estimator</a></p>
-      <p>Talk soon,<br>— [Founder Name]<br>CFO for Creators</p>
+      <p>Talk soon,<br>— Jada Mclean<br>CFO for Creators</p>
     `,
   });
 }

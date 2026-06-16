@@ -9,9 +9,9 @@ import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import SpotsCounter from "@/components/waitlist/SpotsCounter";
 
 export const metadata: Metadata = {
-  title: "CFO for Creators — AI financial operator for content creators",
+  title: "CFO for Creators — taxes, sponsor rates, write-offs handled",
   description:
-    "An AI CFO built for content creators. Get straight answers on taxes, sponsor rates, write-offs, and where your money's actually going — without becoming your own accountant. Join the waitlist.",
+    "Figure out what you owe in taxes, what to charge for sponsorships, and what you can actually write off. Without becoming your own accountant. Join the waitlist — first 100 get a personal video walkthrough.",
 };
 
 export default function LandingPage() {
@@ -38,10 +38,10 @@ export default function LandingPage() {
       {/* Section 7 — Final CTA */}
       <section className="py-12 space-y-6 border-t border-border">
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-ink">stop guessing. get clarity.</h2>
+          <h2 className="text-2xl font-bold text-ink">stop guessing. start sleeping better.</h2>
           <SpotsCounter />
         </div>
-        <WaitlistForm source="landing-footer" ctaText="Join the waitlist \u2192" />
+        <WaitlistForm source="landing-footer" ctaText="join the waitlist →" />
       </section>
     </div>
   );

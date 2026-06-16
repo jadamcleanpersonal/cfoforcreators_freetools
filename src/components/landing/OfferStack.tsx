@@ -2,20 +2,11 @@ import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import SpotsCounter from "@/components/waitlist/SpotsCounter";
 
 const WAITLIST_PERKS = [
-  { icon: "📩", text: "Weekly creator finance newsletter — 4-minute reads, plain language, no fluff" },
-  {
-    icon: "📅",
-    text: "Tax deadline reminders specific to your state, so you never miss a quarterly payment again",
-  },
-  {
-    icon: "💰",
-    text: "Founding member pricing locked in for life when we launch (50% off the first year)",
-  },
-  { icon: "🚀", text: "Early access before public launch" },
-  {
-    icon: "🛠️",
-    text: "Free use of every tool we ship while we build (S-corp calculator, sponsor rate database, retirement chooser, more on the way)",
-  },
+  "weekly creator finance newsletter. 4-minute reads, no fluff.",
+  "tax deadline reminders for your state. never miss a quarterly again.",
+  "founding member pricing for life when we launch (50% off year one).",
+  "early access before public launch.",
+  "every free tool we ship (quarterly tax calculator, s-corp calculator, sponsor rate finder, brand contract scanner).",
 ];
 
 export default function OfferStack() {
@@ -23,16 +14,15 @@ export default function OfferStack() {
     <section id="waitlist" className="py-12 space-y-10">
       {/* Everyone */}
       <div className="space-y-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-ink">
-          everyone who joins the waitlist:
-        </h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-ink">what you get when you sign up</h2>
         <ul className="space-y-4">
           {WAITLIST_PERKS.map((perk) => (
-            <li key={perk.text} className="flex items-start gap-3">
-              <span className="text-xl flex-shrink-0" aria-hidden="true">
-                {perk.icon}
-              </span>
-              <span className="text-base text-ink-muted leading-relaxed">{perk.text}</span>
+            <li key={perk} className="flex items-start gap-3">
+              <span
+                className="mt-1.5 w-2 h-2 rounded-full bg-brand flex-shrink-0"
+                aria-hidden="true"
+              />
+              <span className="text-base text-ink-muted leading-relaxed">{perk}</span>
             </li>
           ))}
         </ul>
@@ -44,25 +34,19 @@ export default function OfferStack() {
           <span className="text-2xl flex-shrink-0" aria-hidden="true">🎯</span>
           <div className="space-y-3">
             <h3 className="text-xl font-bold text-ink">
-              And the first 100 members get one more thing:
+              first 100 get a personal video walkthrough from the founder.
             </h3>
-            <p className="text-base text-ink font-semibold">
-              A personal financial deep-dive from our founder.
-            </p>
             <p className="text-base text-ink-muted leading-relaxed">
-              Submit your numbers and your top 3 questions. Within 48 hours, you&apos;ll get a
-              personalized 10-minute video reviewing your situation, with specific recommendations
-              for your channel.
+              send us your numbers and your top 3 questions. you&apos;ll get a 10-minute video
+              answering them within 48 hours.
             </p>
-            <p className="text-sm font-medium text-ink-muted">
-              No charge. Limited to the first 100 spots.
-            </p>
+            <p className="text-sm font-medium text-ink-muted">free. only 100 spots.</p>
             <SpotsCounter className="text-base" />
           </div>
         </div>
       </div>
 
-      <WaitlistForm source="landing-offer" ctaText="Claim your spot \u2192" />
+      <WaitlistForm source="landing-offer" ctaText="claim your spot →" />
     </section>
   );
 }

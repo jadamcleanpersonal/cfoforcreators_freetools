@@ -1,27 +1,27 @@
 const FAQS = [
   {
-    q: "Is this a bank? Will you hold my money?",
-    a: "No. The AI CFO is read-only — we connect to your existing accounts and see what's happening, but we never move money on your behalf. You stay fully in control.",
+    q: "is this a bank? will you hold my money?",
+    a: "no. read-only. we see what's happening in your accounts. we never move money.",
   },
   {
-    q: "Are you a CPA?",
-    a: "No. The AI CFO prepares the work; humans (your accountant, you) sign and execute. Think of us as the operating layer between you and the real professionals.",
+    q: "are you a cpa?",
+    a: "no. we prepare the work. you and your accountant sign and execute.",
   },
   {
-    q: "What's it cost?",
-    a: "We're pre-launch — the AI CFO will be a monthly subscription. Waitlist members lock in founding member pricing (50% off year one). Pricing details when we launch.",
+    q: "what's it cost?",
+    a: "monthly subscription when we launch. waitlist members get founding member pricing for life (50% off year one).",
   },
   {
-    q: "When does it launch?",
-    a: "Building it now. Targeting Coming soon for first beta access. Waitlist members go first.",
+    q: "when does it launch?",
+    a: "building it now. waitlist members go first.",
   },
   {
-    q: "What if I'm just starting out?",
-    a: "Even better. The free tools we ship along the way (S-corp calculator, sponsor rate benchmark, retirement account chooser, etc.) are useful at any income level. Join the waitlist and we'll send each new tool as it goes live.",
+    q: "what if i'm just starting out?",
+    a: "even better. the free tools (quarterly tax, s-corp, sponsor rates, brand contracts) work at any income level. sign up and we'll send each one as it ships.",
   },
   {
-    q: "What countries do you support?",
-    a: "US-only at launch. International coming after. (Sign up anyway — we'll let you know when your country's tax stuff is supported.)",
+    q: "what countries do you support?",
+    a: "us-only at launch. international coming after. sign up anyway, we'll let you know when your country's covered.",
   },
 ];
 
