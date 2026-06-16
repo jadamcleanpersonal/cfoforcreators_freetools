@@ -1,5 +1,5 @@
+import { US_STATES, getStateBySlug, getStateName } from "@/data/states";
 import { describe, expect, it } from "vitest";
-import { US_STATES, getStateName, getStateBySlug } from "@/data/states";
 
 describe("US_STATES", () => {
   it("has exactly 50 states", () => {

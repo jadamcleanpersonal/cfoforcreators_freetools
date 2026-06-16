@@ -5,11 +5,11 @@
 // 3 messages/session cap (checked client-side + server-side).
 // Rate limited: 10 requests/hr per IP.
 
+import { AI_CFO_SYSTEM_PROMPT } from "@/lib/prompts/ai-cfo";
+import { getToolBySlug } from "@/tools/_registry";
 import { anthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { NextResponse } from "next/server";
-import { AI_CFO_SYSTEM_PROMPT } from "@/lib/prompts/ai-cfo";
-import { getToolBySlug } from "@/tools/_registry";
 
 export const runtime = "edge";
 export const dynamic = "force-dynamic";

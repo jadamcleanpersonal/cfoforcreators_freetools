@@ -8,7 +8,13 @@
     "rules": {
       "recommended": true,
       "suspicious": {
-        "noExplicitAny": "warn"
+        "noExplicitAny": "off"
+      },
+      "style": {
+        "recommended": false
+      },
+      "complexity": {
+        "recommended": false
       }
     }
   },

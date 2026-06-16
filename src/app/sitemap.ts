@@ -1,5 +1,5 @@
-import type { MetadataRoute } from "next";
 import { allTools } from "@/tools/_registry";
+import type { MetadataRoute } from "next";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thecfoforcreators.com";
 

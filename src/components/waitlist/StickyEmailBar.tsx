@@ -4,7 +4,7 @@
 // Shown on tool pages — slides up from the bottom.
 // Hidden once the user scrolls to the email gate or submits.
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import WaitlistForm from "./WaitlistForm";
 
 interface Props {

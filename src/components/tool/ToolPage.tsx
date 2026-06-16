@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import type { ToolDefinition } from "@/tools/_types";
+import { useState } from "react";
 import type { z } from "zod";
 import ToolCrossPromo from "./ToolCrossPromo";
 import ToolEmailGate from "./ToolEmailGate";

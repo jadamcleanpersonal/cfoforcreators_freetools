@@ -4,8 +4,8 @@
 // Shown after the result + explainer. Optional submit — user can skip.
 // Captures email against the result ID for future personalization features.
 
-import { useState } from "react";
 import type { ToolDefinition } from "@/tools/_types";
+import { useState } from "react";
 import type { z } from "zod";
 
 interface Props {
@@ -63,10 +63,7 @@ export default function ToolEmailGate({ tool, resultId }: Props) {
   }
 
   return (
-    <aside
-      id="waitlist"
-      className="rounded-2xl border border-border bg-paper-soft p-5 space-y-4"
-    >
+    <aside id="waitlist" className="rounded-2xl border border-border bg-paper-soft p-5 space-y-4">
       <div className="space-y-1">
         <h2 className="text-base font-semibold text-ink">Want the full picture?</h2>
         <p className="text-sm text-ink-muted">

@@ -1,5 +1,5 @@
+import { clamp, formatCurrency, formatNumber, safeJsonParse } from "@/lib/utils";
 import { describe, expect, it } from "vitest";
-import { formatCurrency, formatNumber, clamp, safeJsonParse } from "@/lib/utils";
 
 describe("formatCurrency", () => {
   it("formats whole numbers as USD", () => {

@@ -1,6 +1,6 @@
-import type { ToolDefinition, ResultDisplay } from "@/tools/_types";
-import type { z } from "zod";
 import { cn } from "@/lib/utils";
+import type { ResultDisplay, ToolDefinition } from "@/tools/_types";
+import type { z } from "zod";
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,9 +59,7 @@ export default function ToolResult({ tool, result }: Props) {
         <p className="text-result font-bold text-ink leading-none tracking-tight">
           {display.headlineNumber ?? display.headline}
         </p>
-        {display.headlineNumber && (
-          <p className="text-base text-ink-muted">{display.headline}</p>
-        )}
+        {display.headlineNumber && <p className="text-base text-ink-muted">{display.headline}</p>}
         {display.subline && <p className="text-sm text-ink-muted">{display.subline}</p>}
       </div>
 
@@ -86,7 +84,9 @@ export default function ToolResult({ tool, result }: Props) {
 
       {/* Caveat */}
       {display.caveat && (
-        <p className="text-xs text-ink-muted italic border-t border-border pt-3">{display.caveat}</p>
+        <p className="text-xs text-ink-muted italic border-t border-border pt-3">
+          {display.caveat}
+        </p>
       )}
     </section>
   );

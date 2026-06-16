@@ -1,8 +1,8 @@
+import { subscribe } from "@/lib/beehiiv";
+import { Events, trackServerEvent } from "@/lib/posthog";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { supabaseAdmin } from "@/lib/supabase/admin";
-import { subscribe } from "@/lib/beehiiv";
-import { trackServerEvent, Events } from "@/lib/posthog";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

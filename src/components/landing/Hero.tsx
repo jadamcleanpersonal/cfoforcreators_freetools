@@ -1,5 +1,5 @@
-import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import SpotsCounter from "@/components/waitlist/SpotsCounter";
+import WaitlistForm from "@/components/waitlist/WaitlistForm";
 
 export default function Hero() {
   return (
@@ -21,8 +21,10 @@ export default function Hero() {
 
       {/* Spots counter — visual centerpiece */}
       <div className="flex items-center gap-2">
-        <span className="text-2xl" aria-hidden="true">🎯</span>
-          <SpotsCounter />
+        <span className="text-2xl" aria-hidden="true">
+          🎯
+        </span>
+        <SpotsCounter />
       </div>
     </section>
   );
