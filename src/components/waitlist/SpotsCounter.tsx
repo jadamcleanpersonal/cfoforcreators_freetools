@@ -35,11 +35,10 @@ export default async function SpotsCounter({ className = "" }: Props) {
       aria-live="polite"
     >
       {isFull ? (
-        <>All 100 founder deep-dive spots are claimed.</>
+        <>all 100 spots are claimed.</>
       ) : (
         <>
-          <span className="text-lg">{remaining}</span> of {TOTAL_SPOTS} founder deep-dive spots
-          remaining.
+          <span className="text-lg">{remaining}</span> of {TOTAL_SPOTS} spots remaining.
         </>
       )}
     </p>

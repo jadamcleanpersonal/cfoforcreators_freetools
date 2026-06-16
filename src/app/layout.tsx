@@ -6,14 +6,14 @@ import PostHogProvider from "@/components/providers/PostHogProvider";
 
 export const metadata: Metadata = {
   title: {
-    default: "CFO for Creators — AI financial operator for content creators",
-    template: "%s | CFO for Creators",
+    default: "cfo for creators — taxes, sponsor rates, write-offs handled",
+    template: "%s | cfo for creators",
   },
   description:
-    "An AI CFO built for content creators. Get straight answers on taxes, sponsor rates, write-offs, and where your money's actually going — without becoming your own accountant.",
+    "figure out what you owe in taxes, what to charge for sponsorships, and what you can actually write off. without becoming your own accountant.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://thecfoforcreators.com"),
   openGraph: {
-    siteName: "CFO for Creators",
+    siteName: "cfo for creators",
     locale: "en_US",
     type: "website",
   },

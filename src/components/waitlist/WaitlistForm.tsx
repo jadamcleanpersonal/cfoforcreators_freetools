@@ -19,7 +19,7 @@ function trackEvent(event: string, props?: Record<string, unknown>) {
 
 export default function WaitlistForm({
   source = "landing",
-  ctaText = "Join the waitlist →",
+  ctaText = "join the waitlist →",
   placeholder = "your@email.com",
   className = "",
 }: Props) {
@@ -45,13 +45,13 @@ export default function WaitlistForm({
 
       if (!res.ok) {
         const json = await res.json();
-        throw new Error(json.error ?? "Something went wrong. Try again.");
+        throw new Error(json.error ?? "something went wrong. try again.");
       }
 
       trackEvent(Events.WAITLIST_SUCCESS, { source });
       setSubmitted(true);
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Something went wrong.";
+      const msg = err instanceof Error ? err.message : "something went wrong.";
       setError(msg);
       trackEvent(Events.WAITLIST_ERROR, { source, error: msg });
     } finally {
@@ -62,9 +62,9 @@ export default function WaitlistForm({
   if (submitted) {
     return (
       <div className={`rounded-xl border border-brand/30 bg-brand/5 px-5 py-4 space-y-1 ${className}`}>
-        <p className="font-semibold text-brand">You&apos;re on the list.</p>
+        <p className="font-semibold text-brand">you&apos;re on the list.</p>
         <p className="text-sm text-ink-muted">
-          Check your inbox for a confirmation. We&apos;ll send each new tool as it goes live.
+          check your inbox. we&apos;ll send each new tool as it goes live.
         </p>
       </div>
     );
@@ -89,7 +89,7 @@ export default function WaitlistForm({
           onClick={() => trackEvent(Events.HERO_CTA_CLICK, { source })}
           className="min-h-tap bg-brand text-white font-semibold rounded-xl px-6 py-3 text-base hover:bg-brand-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
         >
-          {isLoading ? "Joining..." : ctaText}
+          {isLoading ? "joining..." : ctaText}
         </button>
       </div>
 
@@ -99,7 +99,7 @@ export default function WaitlistForm({
         </p>
       )}
 
-      <p className="text-xs text-ink-muted">No spam. Unsubscribe anytime.</p>
+      <p className="text-xs text-ink-muted">no spam. unsubscribe anytime.</p>
     </form>
   );
 }

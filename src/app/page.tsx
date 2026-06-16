@@ -9,9 +9,9 @@ import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import SpotsCounter from "@/components/waitlist/SpotsCounter";
 
 export const metadata: Metadata = {
-  title: "CFO for Creators — taxes, sponsor rates, write-offs handled",
+  title: "cfo for creators — taxes, sponsor rates, write-offs handled",
   description:
-    "Figure out what you owe in taxes, what to charge for sponsorships, and what you can actually write off. Without becoming your own accountant. Join the waitlist — first 100 get a personal video walkthrough.",
+    "figure out what you owe in taxes, what to charge for sponsorships, and what you can actually write off. without becoming your own accountant. join the waitlist, first 100 get a personal video walkthrough.",
 };
 
 export default function LandingPage() {

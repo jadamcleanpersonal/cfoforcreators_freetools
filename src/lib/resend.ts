@@ -5,7 +5,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
-const FROM = "CFO for Creators <noreply@thecfoforcreators.com>";
+const FROM = "cfo for creators <noreply@thecfoforcreators.com>";
 
 export interface DeepDiveConfirmationInput {
   to: string;
@@ -13,7 +13,7 @@ export interface DeepDiveConfirmationInput {
 }
 
 /**
- * Send the auto-confirmation email to a founder deep-dive intake submitter.
+ * Send the auto-confirmation email to a founder video walkthrough intake submitter.
  */
 export async function sendDeepDiveConfirmation(
   input: DeepDiveConfirmationInput,
@@ -23,17 +23,17 @@ export async function sendDeepDiveConfirmation(
   await resend.emails.send({
     from: FROM,
     to: input.to,
-    subject: "Got it — your deep-dive is in the queue",
+    subject: "got it. your video walkthrough is in the queue",
     html: `
-      <p>Hey ${name},</p>
-      <p>Your financial deep-dive request came through. Here's what happens next:</p>
+      <p>hey ${name},</p>
+      <p>your video walkthrough request came through. here's what happens next:</p>
       <ul>
-        <li>I'll review your numbers and your questions personally.</li>
-        <li>You'll get a 10-minute Loom video within 48 hours with specific recommendations for your channel.</li>
-        <li>No charge. No catch.</li>
+        <li>i'll review your numbers and your questions personally.</li>
+        <li>you'll get a 10-minute video within 48 hours with specific recommendations for your channel.</li>
+        <li>no charge. no catch.</li>
       </ul>
-      <p>In the meantime, if you haven't tried the free tools yet — the quarterly tax estimator is the most useful place to start: <a href="https://thecfoforcreators.com/tax-estimator">thecfoforcreators.com/tax-estimator</a></p>
-      <p>Talk soon,<br>— Jada Mclean<br>CFO for Creators</p>
+      <p>in the meantime, if you haven't tried the free tools yet, the quarterly tax estimator is the most useful place to start: <a href="https://thecfoforcreators.com/tax-estimator">thecfoforcreators.com/tax-estimator</a></p>
+      <p>talk soon,<br>— Jada Mclean<br>cfo for creators</p>
     `,
   });
 }
@@ -46,7 +46,7 @@ export interface AdminDeepDiveNotificationInput {
 }
 
 /**
- * Notify the founder when a new deep-dive intake is submitted.
+ * Notify the founder when a new video walkthrough intake is submitted.
  */
 export async function sendAdminDeepDiveNotification(
   input: AdminDeepDiveNotificationInput,
@@ -56,17 +56,17 @@ export async function sendAdminDeepDiveNotification(
   await resend.emails.send({
     from: FROM,
     to: founderEmail,
-    subject: `New deep-dive intake: ${input.submitterEmail}`,
+    subject: `new video walkthrough intake: ${input.submitterEmail}`,
     html: `
-      <p><strong>New deep-dive intake submitted.</strong></p>
-      <p><strong>Email:</strong> ${input.submitterEmail}</p>
-      <p><strong>Name:</strong> ${input.submitterName ?? "N/A"}</p>
-      <p><strong>Income tier:</strong> ${input.incomeTier}</p>
-      <p><strong>Questions:</strong></p>
+      <p><strong>new video walkthrough intake submitted.</strong></p>
+      <p><strong>email:</strong> ${input.submitterEmail}</p>
+      <p><strong>name:</strong> ${input.submitterName ?? "n/a"}</p>
+      <p><strong>income tier:</strong> ${input.incomeTier}</p>
+      <p><strong>questions:</strong></p>
       <ol>
         ${input.questions.map((q) => `<li>${q}</li>`).join("")}
       </ol>
-      <p><a href="https://thecfoforcreators.com/admin">View in admin dashboard</a></p>
+      <p><a href="https://thecfoforcreators.com/admin">view in admin dashboard</a></p>
     `,
   });
 }

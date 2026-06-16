@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "CFO for Creators",
-    short_name: "CFO for Creators",
+    name: "cfo for creators",
+    short_name: "cfo for creators",
     description:
-      "Free financial tools for content creators — tax estimator, S-corp calculator, and more.",
+      "free financial tools for creators. tax estimator, s-corp calculator, sponsor rate finder, brand contract scanner.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
