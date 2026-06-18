@@ -39,6 +39,7 @@ describe("output shape", () => {
     expect(typeof r.runningCosts.payrollServiceAnnual).toBe("number");
     expect(typeof r.runningCosts.stateFilingFees).toBe("number");
     expect(typeof r.runningCosts.additionalAccountingCost).toBe("number");
+    expect(typeof r.runningCosts.timeCostAnnual).toBe("number");
     expect(typeof r.runningCosts.total).toBe("number");
     expect(typeof r.netSavings).toBe("number");
     expect(r.stateGotchas).toBeInstanceOf(Array);
@@ -51,7 +52,8 @@ describe("output shape", () => {
     expect(r.runningCosts.total).toBe(
       r.runningCosts.payrollServiceAnnual +
         r.runningCosts.stateFilingFees +
-        r.runningCosts.additionalAccountingCost,
+        r.runningCosts.additionalAccountingCost +
+        r.runningCosts.timeCostAnnual,
     );
   });
 
