@@ -51,6 +51,7 @@ export const scorpCalculatorOutputSchema = z.object({
     payrollServiceAnnual: z.number().int(),
     stateFilingFees: z.number().int(),
     additionalAccountingCost: z.number().int(),
+    timeCostAnnual: z.number().int(),
     total: z.number().int(),
   }),
   netSavings: z.number().int(),

@@ -66,6 +66,12 @@ export interface ScorpRunningCosts {
   payrollServiceAnnual: number;
   stateFilingFees: number;
   additionalAccountingCost: number;
+  /**
+   * Estimated time cost: ~35 hrs/year of S-corp-specific paperwork (quarterly
+   * payroll, 1120-S, K-1, W-2) valued at the creator's effective hourly rate.
+   * Most generic S-corp calcs leave this out. We don't.
+   */
+  timeCostAnnual: number;
   total: number;
 }
 
@@ -385,12 +391,22 @@ export function computeScorp(inputs: ScorpInputs): ScorpResult {
   const stateFilingFees = getStateFilingFees(state, netProfit);
   const additionalAccountingCost = 1_000; // midpoint of $500–1500 extra for S-corp filing
 
-  const runningCostsTotal = payrollServiceAnnual + stateFilingFees + additionalAccountingCost;
+  // Time cost: ~35 hrs/year on S-corp paperwork (quarterly payroll runs,
+  // 1120-S filing, K-1, W-2, reconciliation) valued at creator's effective
+  // hourly rate. Floor $1k, ceiling $7.5k to avoid edge cases.
+  const annualHours = Math.max(1, inputs.hours_per_week) * 50; // 50-week year
+  const effectiveHourlyRate = annualHours > 0 ? netProfit / annualHours : 50;
+  const rawTimeCost = Math.round(35 * Math.max(25, effectiveHourlyRate));
+  const timeCostAnnual = Math.min(7_500, Math.max(1_000, rawTimeCost));
+
+  const runningCostsTotal =
+    payrollServiceAnnual + stateFilingFees + additionalAccountingCost + timeCostAnnual;
 
   const runningCosts: ScorpRunningCosts = {
     payrollServiceAnnual,
     stateFilingFees,
     additionalAccountingCost,
+    timeCostAnnual,
     total: runningCostsTotal,
   };
 
@@ -424,14 +440,15 @@ export function computeScorp(inputs: ScorpInputs): ScorpResult {
   if (verdictResult.verdict === "yes" || verdictResult.verdict === "wait") {
     breakdownExplainer += `If you switch to S-corp and pay yourself a $${salary.toLocaleString()} salary, only that salary faces SE tax (${fmtDollar(seTaxWithScorp)}). The remaining $${distributions.toLocaleString()} in distributions skips it entirely. `;
     breakdownExplainer += `Gross SE tax savings: ${fmtDollar(grossSavings)}. `;
-    breakdownExplainer += `Running costs (payroll service, accounting, state fees): ${fmtDollar(runningCostsTotal)}. `;
+    breakdownExplainer += `Running costs (payroll service, accounting, state fees, ~35 hrs/year of your time): ${fmtDollar(runningCostsTotal)}. `;
     if (netSavings > 0) {
-      breakdownExplainer += `Net savings: ~${fmtDollar(netSavings)}/year.`;
+      breakdownExplainer += `Net savings: ~${fmtDollar(netSavings)}/year. `;
     } else {
-      breakdownExplainer += `At this income level, running costs eat all the savings (net: ${netSavings < 0 ? "-" : ""}${fmtDollar(netSavings)}/year).`;
+      breakdownExplainer += `At this income level, running costs eat all the savings (net: ${netSavings < 0 ? "-" : ""}${fmtDollar(netSavings)}/year). `;
     }
+    breakdownExplainer += `One more thing most calcs don't mention: payroll runs on a fixed schedule (biweekly or monthly) regardless of when sponsor checks land. For lumpy creator income, that timing mismatch can squeeze your cash flow even when the math works.`;
   } else {
-    breakdownExplainer += `The running costs of S-corp (payroll service, extra accounting, state fees: ~${fmtDollar(runningCostsTotal)}/year) would eat the savings at this income level.`;
+    breakdownExplainer += `The running costs of S-corp (payroll service, extra accounting, state fees, plus ~35 hrs/year of your time: ~${fmtDollar(runningCostsTotal)}/year total) would eat the savings at this income level.`;
   }
 
   return {
