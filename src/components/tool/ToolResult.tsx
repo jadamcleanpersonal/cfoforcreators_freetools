@@ -31,6 +31,9 @@ const VERDICT_STYLES = {
 } as const;
 
 export default function ToolResult({ tool, result }: Props) {
+  if (!tool.renderResult) {
+    return null; // AI-driven tools (isAiDriven: true) render via StreamingResult, not ToolResult
+  }
   const display: ResultDisplay = tool.renderResult(result.outputs, result.inputs);
   const styles = VERDICT_STYLES[display.verdict];
 
