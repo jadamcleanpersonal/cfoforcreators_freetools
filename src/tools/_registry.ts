@@ -1,10 +1,8 @@
 // Tool registry — add every new tool here.
 // Imported by the sitemap, cross-promo block, and the follow-up chat API.
-//
-// Sprint 1: registry is empty (no tools shipped yet — just the template shells).
-// Sprint 2+: import each tool and add to the array.
 
 import type { z } from "zod";
+import contractScanner from "./contract-scanner";
 import type { ToolDefinition } from "./_types";
 import scorpCalculator from "./scorp-calculator";
 import sponsorRate from "./sponsor-rate";
@@ -18,7 +16,8 @@ export const allTools: ToolDefinition<z.ZodTypeAny, any>[] = [
   scorpCalculator as unknown as ToolDefinition<z.ZodTypeAny, any>,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   sponsorRate as unknown as ToolDefinition<z.ZodTypeAny, any>,
-  // Sprint 4b: add contract-scanner here
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  contractScanner as unknown as ToolDefinition<z.ZodTypeAny, any>,
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

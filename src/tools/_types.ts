@@ -55,10 +55,15 @@ export interface ToolDefinition<Inputs extends z.ZodTypeAny, Outputs> {
   inputFields: FieldConfig[];
 
   // pure calculator function — testable in isolation, no React
-  compute: (input: z.infer<Inputs>) => Outputs;
+  // optional for AI-driven tools (isAiDriven: true) that use streamScan instead
+  compute?: (input: z.infer<Inputs>) => Outputs;
 
   // result rendering — derives ResultDisplay from compute() output
-  renderResult: (output: Outputs, input: z.infer<Inputs>) => ResultDisplay;
+  // optional for AI-driven tools that render via StreamingResult
+  renderResult?: (output: Outputs, input: z.infer<Inputs>) => ResultDisplay;
+
+  // AI-driven flag — signals this tool uses streamScan instead of compute
+  isAiDriven?: true;
 
   // explainer content
   explainerSlug: string; // links to /learn/[slug]
