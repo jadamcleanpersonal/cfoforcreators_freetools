@@ -9,10 +9,10 @@ import ToolExplainer from "@/components/tool/ToolExplainer";
 import ToolFollowupChat from "@/components/tool/ToolFollowupChat";
 import ToolShareBlock from "@/components/tool/ToolShareBlock";
 import type { FlaggedClause, ScanResult } from "@/lib/contract/types";
-import contractScanner from "@/tools/contract-scanner";
 import type { ToolDefinition } from "@/tools/_types";
-import type { z } from "zod";
+import contractScanner from "@/tools/contract-scanner";
 import { useState } from "react";
+import type { z } from "zod";
 import ContractTextarea from "./ContractTextarea";
 import StreamingResult from "./StreamingResult";
 
@@ -125,7 +125,9 @@ export default function ContractScannerClient() {
 
             // Scroll to results
             setTimeout(() => {
-              document.getElementById("scan-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              document
+                .getElementById("scan-results")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
             }, 100);
           } else if (event.type === "flag") {
             const clause: FlaggedClause = {
@@ -161,7 +163,11 @@ export default function ContractScannerClient() {
           phase: "done",
           result: {
             id: resultId,
-            inputs: { contract_length: contractText.length, creator_context: creatorContext, niche },
+            inputs: {
+              contract_length: contractText.length,
+              creator_context: creatorContext,
+              niche,
+            },
             outputs,
           },
         });
@@ -197,10 +203,14 @@ export default function ContractScannerClient() {
       {/* Legal disclaimer — required, non-negotiable */}
       <aside className="rounded-xl border border-border bg-paper-soft px-4 py-4 space-y-1.5 text-sm text-ink-muted">
         <p>
-          <strong className="text-ink font-medium">this tool flags clauses and explains them in plain English. it does NOT provide legal advice.</strong>
+          <strong className="text-ink font-medium">
+            this tool flags clauses and explains them in plain English. it does NOT provide legal
+            advice.
+          </strong>
         </p>
         <p>
-          for serious concerns about a contract, talk to a lawyer who knows entertainment and IP law.
+          for serious concerns about a contract, talk to a lawyer who knows entertainment and IP
+          law.
         </p>
         <p>
           we never store your contract text long-term — scans are kept for 7 days for your shareable
@@ -209,13 +219,17 @@ export default function ContractScannerClient() {
       </aside>
 
       {/* Form — shown while idle or scanning */}
-      {(scanState.phase === "idle" || scanState.phase === "scanning" || scanState.phase === "error") && (
+      {(scanState.phase === "idle" ||
+        scanState.phase === "scanning" ||
+        scanState.phase === "error") && (
         <form onSubmit={handleScan} className="space-y-6" noValidate>
           {/* Contract text */}
           <div className="space-y-2">
             <label htmlFor="contract_text" className="block text-sm font-medium text-ink">
               contract text
-              <span className="text-danger ml-1" aria-hidden="true">*</span>
+              <span className="text-danger ml-1" aria-hidden="true">
+                *
+              </span>
             </label>
             <p id="contract-text-help" className="text-sm text-ink-muted">
               paste the full contract text. email addresses, phone numbers, and tax IDs are
@@ -232,12 +246,11 @@ export default function ContractScannerClient() {
           {/* Creator context */}
           <div className="space-y-2">
             <label htmlFor="creator_context" className="block text-sm font-medium text-ink">
-              context about this deal{" "}
-              <span className="text-ink-muted font-normal">(optional)</span>
+              context about this deal <span className="text-ink-muted font-normal">(optional)</span>
             </label>
             <p className="text-sm text-ink-muted">
-              what&apos;s the deal about? anything discussed verbally that&apos;s not in the contract? this helps
-              the scan weigh clauses against your situation.
+              what&apos;s the deal about? anything discussed verbally that&apos;s not in the
+              contract? this helps the scan weigh clauses against your situation.
             </p>
             <textarea
               id="creator_context"
@@ -255,8 +268,7 @@ export default function ContractScannerClient() {
           <div className="space-y-2">
             <fieldset>
               <legend className="block text-sm font-medium text-ink mb-2">
-                your content niche{" "}
-                <span className="text-ink-muted font-normal">(optional)</span>
+                your content niche <span className="text-ink-muted font-normal">(optional)</span>
               </legend>
               <div className="flex flex-wrap gap-2">
                 {[
@@ -337,14 +349,17 @@ export default function ContractScannerClient() {
                 <aside className="space-y-3">
                   <p className="text-xs text-ink-muted">
                     your shareable result link is active until{" "}
-                    <strong className="text-ink">{deleteDate}</strong> — after that it&apos;s permanently
-                    deleted per our 7-day retention policy.
+                    <strong className="text-ink">{deleteDate}</strong> — after that it&apos;s
+                    permanently deleted per our 7-day retention policy.
                   </p>
                   <ToolShareBlock tool={tool} result={scanState.result} />
                 </aside>
               )}
 
-              <ToolCrossPromo currentSlug="contract-scanner" related={contractScanner.relatedTools} />
+              <ToolCrossPromo
+                currentSlug="contract-scanner"
+                related={contractScanner.relatedTools}
+              />
 
               {/* Scan another */}
               <div className="text-center">

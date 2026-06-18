@@ -10,7 +10,9 @@ vi.spyOn(console, "log").mockImplementation(() => {});
 describe("sanitizeContract", () => {
   describe("email addresses", () => {
     it("strips a simple email", () => {
-      const { text, redactionCounts } = sanitizeContract("Contact legal@brandco.com for questions.");
+      const { text, redactionCounts } = sanitizeContract(
+        "Contact legal@brandco.com for questions.",
+      );
       expect(text).toBe("Contact [REDACTED-EMAIL] for questions.");
       expect(redactionCounts.emails).toBe(1);
     });
@@ -24,7 +26,9 @@ describe("sanitizeContract", () => {
     });
 
     it("strips emails with subdomains and plus signs", () => {
-      const { text, redactionCounts } = sanitizeContract("reply to jane+creator@mail.example.co.uk");
+      const { text, redactionCounts } = sanitizeContract(
+        "reply to jane+creator@mail.example.co.uk",
+      );
       expect(text).toBe("reply to [REDACTED-EMAIL]");
       expect(redactionCounts.emails).toBe(1);
     });
@@ -39,9 +43,7 @@ describe("sanitizeContract", () => {
 
   describe("phone numbers", () => {
     it("strips a standard US phone number", () => {
-      const { text, redactionCounts } = sanitizeContract(
-        "call us at 212-555-0100 for questions.",
-      );
+      const { text, redactionCounts } = sanitizeContract("call us at 212-555-0100 for questions.");
       expect(text).toBe("call us at [REDACTED-PHONE] for questions.");
       expect(redactionCounts.phones).toBe(1);
     });
@@ -101,9 +103,7 @@ describe("sanitizeContract", () => {
     });
 
     it("does not strip normal dollar amounts or short numbers", () => {
-      const { text, redactionCounts } = sanitizeContract(
-        "payment of $5000 due within 30 days",
-      );
+      const { text, redactionCounts } = sanitizeContract("payment of $5000 due within 30 days");
       expect(text).toBe("payment of $5000 due within 30 days");
       expect(redactionCounts.bankAccounts).toBe(0);
     });

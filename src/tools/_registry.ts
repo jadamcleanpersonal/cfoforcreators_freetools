@@ -2,8 +2,8 @@
 // Imported by the sitemap, cross-promo block, and the follow-up chat API.
 
 import type { z } from "zod";
-import contractScanner from "./contract-scanner";
 import type { ToolDefinition } from "./_types";
+import contractScanner from "./contract-scanner";
 import scorpCalculator from "./scorp-calculator";
 import sponsorRate from "./sponsor-rate";
 import taxEstimator from "./tax-estimator";

@@ -2,8 +2,8 @@
 // Headline template: verdict badge + headline + flag count summary.
 // Rendered at /contract-scanner/result/[id]/opengraph-image
 
-import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { ScanResult } from "@/lib/contract/types";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
@@ -103,7 +103,9 @@ export default async function OGImage({ params }: Props) {
               <div style={{ fontSize: "32px", fontWeight: 800, color: "#dc2626" }}>
                 {riskyCount}
               </div>
-              <div style={{ fontSize: "14px", color: "#78716c" }}>risky clause{riskyCount !== 1 ? "s" : ""}</div>
+              <div style={{ fontSize: "14px", color: "#78716c" }}>
+                risky clause{riskyCount !== 1 ? "s" : ""}
+              </div>
             </div>
           )}
           {unusualCount > 0 && (
@@ -136,9 +138,7 @@ export default async function OGImage({ params }: Props) {
                 gap: "4px",
               }}
             >
-              <div style={{ fontSize: "32px", fontWeight: 800, color: "#16a34a" }}>
-                {fineCount}
-              </div>
+              <div style={{ fontSize: "32px", fontWeight: 800, color: "#16a34a" }}>{fineCount}</div>
               <div style={{ fontSize: "14px", color: "#78716c" }}>fine</div>
             </div>
           )}

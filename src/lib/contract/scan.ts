@@ -14,7 +14,9 @@ export async function* streamScan(input: ContractInput): AsyncGenerator<ScanEven
 
   const parts: string[] = [`Contract text:\n\n${sanitized.text}`];
   if (input.creator_context) {
-    parts.push(`\nCreator context (what the creator told us about this deal):\n${input.creator_context}`);
+    parts.push(
+      `\nCreator context (what the creator told us about this deal):\n${input.creator_context}`,
+    );
   }
   if (input.niche) {
     parts.push(`\nCreator niche: ${input.niche}`);

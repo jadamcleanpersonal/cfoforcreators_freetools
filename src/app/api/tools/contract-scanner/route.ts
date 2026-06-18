@@ -67,7 +67,10 @@ export async function POST(req: Request) {
   if (!checkIpRateLimit(ip)) {
     await trackServerEvent(Events.CONTRACT_SCAN_RATE_LIMITED, { ip_hash: ip.slice(0, 8) });
     return new Response(
-      JSON.stringify({ error: "rate_limit_exceeded", message: "5 scans per hour — try again in a bit" }),
+      JSON.stringify({
+        error: "rate_limit_exceeded",
+        message: "5 scans per hour — try again in a bit",
+      }),
       { status: 429, headers: { "Content-Type": "application/json" } },
     );
   }
@@ -190,9 +193,7 @@ export async function POST(req: Request) {
           }
         } else {
           // Model didn't produce a verdict (malformed response)
-          controller.enqueue(
-            sseEvent({ type: "error", message: "scan incomplete — try again" }),
-          );
+          controller.enqueue(sseEvent({ type: "error", message: "scan incomplete — try again" }));
         }
       } catch (err) {
         console.error("contract-scanner stream error:", err);

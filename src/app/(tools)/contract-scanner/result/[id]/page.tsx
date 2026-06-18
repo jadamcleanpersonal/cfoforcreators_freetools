@@ -3,15 +3,15 @@
 // Result URLs must remain stable forever — never change the snapshot shape.
 // Scans auto-delete after 7 days per disclosed retention policy.
 
+import StreamingResult from "@/components/contract/StreamingResult";
 import ToolCrossPromo from "@/components/tool/ToolCrossPromo";
 import ToolExplainer from "@/components/tool/ToolExplainer";
 import ToolFollowupChat from "@/components/tool/ToolFollowupChat";
 import ToolShareBlock from "@/components/tool/ToolShareBlock";
-import StreamingResult from "@/components/contract/StreamingResult";
 import type { ScanResult } from "@/lib/contract/types";
 import { supabaseAdmin } from "@/lib/supabase/admin";
-import contractScanner from "@/tools/contract-scanner";
 import type { ToolDefinition } from "@/tools/_types";
+import contractScanner from "@/tools/contract-scanner";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { z } from "zod";

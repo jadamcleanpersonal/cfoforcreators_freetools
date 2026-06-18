@@ -139,8 +139,18 @@ describe("parseChunk", () => {
   });
 
   it("processes multiple lines in one chunk", () => {
-    const v = JSON.stringify({ type: "verdict", verdict: "wait", verdictHeadline: "Negotiate", verdictReason: "Two fixable issues." });
-    const f = JSON.stringify({ type: "flag", category: "unusual", quote: "60-day payment terms", explanation: "Longer than standard." });
+    const v = JSON.stringify({
+      type: "verdict",
+      verdict: "wait",
+      verdictHeadline: "Negotiate",
+      verdictReason: "Two fixable issues.",
+    });
+    const f = JSON.stringify({
+      type: "flag",
+      category: "unusual",
+      quote: "60-day payment terms",
+      explanation: "Longer than standard.",
+    });
     const { events, remaining } = parseChunk("", `${v}\n${f}\n`);
     expect(events).toHaveLength(2);
     expect(events[0].type).toBe("verdict");
@@ -175,9 +185,24 @@ describe("parseChunk", () => {
 describe("parseFullResponse", () => {
   it("parses a complete NDJSON response", () => {
     const lines = [
-      JSON.stringify({ type: "verdict", verdict: "no", verdictHeadline: "Don't sign.", verdictReason: "Perpetual rights." }),
-      JSON.stringify({ type: "flag", category: "risky", quote: "perpetual worldwide license", explanation: "Rights grab." }),
-      JSON.stringify({ type: "flag", category: "fine", quote: "Net-30 payment terms", explanation: "Standard." }),
+      JSON.stringify({
+        type: "verdict",
+        verdict: "no",
+        verdictHeadline: "Don't sign.",
+        verdictReason: "Perpetual rights.",
+      }),
+      JSON.stringify({
+        type: "flag",
+        category: "risky",
+        quote: "perpetual worldwide license",
+        explanation: "Rights grab.",
+      }),
+      JSON.stringify({
+        type: "flag",
+        category: "fine",
+        quote: "Net-30 payment terms",
+        explanation: "Standard.",
+      }),
       JSON.stringify({ type: "summary", text: "Serious rights issue. Negotiate clause 7." }),
     ].join("\n");
 
@@ -194,7 +219,12 @@ describe("parseFullResponse", () => {
 
   it("handles response with mixed valid and invalid lines", () => {
     const response = [
-      JSON.stringify({ type: "verdict", verdict: "yes", verdictHeadline: "Fine.", verdictReason: "Clean contract." }),
+      JSON.stringify({
+        type: "verdict",
+        verdict: "yes",
+        verdictHeadline: "Fine.",
+        verdictReason: "Clean contract.",
+      }),
       "markdown formatting the AI accidentally included",
       JSON.stringify({ type: "summary", text: "All good." }),
     ].join("\n");
