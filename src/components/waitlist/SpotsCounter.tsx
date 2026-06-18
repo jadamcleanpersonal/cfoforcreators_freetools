@@ -5,6 +5,9 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 export const revalidate = 60;
 
 const TOTAL_SPOTS = 100;
+// Baseline "pre-claimed" spots for social proof. Decreases as real Tally form
+// intakes accumulate. Drop to 0 once we have 27+ real intakes.
+const BASELINE_CLAIMED_SPOTS = 27;
 
 async function getSpotsRemaining(): Promise<number> {
   try {
@@ -14,10 +17,10 @@ async function getSpotsRemaining(): Promise<number> {
       .neq("income_tier", "under_1k");
 
     if (error) throw error;
-    return Math.max(0, TOTAL_SPOTS - (count ?? 0));
+    return Math.max(0, TOTAL_SPOTS - BASELINE_CLAIMED_SPOTS - (count ?? 0));
   } catch (err) {
     console.error("SpotsCounter query error:", err);
-    return TOTAL_SPOTS; // fall back to full count if query fails
+    return TOTAL_SPOTS - BASELINE_CLAIMED_SPOTS; // fall back to baseline
   }
 }
 
