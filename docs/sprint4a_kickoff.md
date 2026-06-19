@@ -1,6 +1,6 @@
 # Sprint 4a — Sponsor Rate Calculator (overnight build kickoff)
 
-This is the prompt to paste into Claude Code for the unsupervised overnight build of the sponsor rate calculator. Sprint 3 (S-corp calculator) should be open as a PR — sprint 4a stacks on top.
+This is the prompt to paste into Claude Code for the unsupervised overnight build of the sponsor rate calculator. Sprint 3 (S-corp calculator) is merged to main — sprint 4a branches off main.
 
 Sprint 4a (this doc) and Sprint 4b (brand contract scanner — `docs/sprint4b_kickoff.md`) can run in parallel as two separate Claude Code instances on two separate branches. They touch entirely different files except for `_registry.ts` and `sitemap.ts` — see Merge Conflict Resolution below.
 
@@ -22,9 +22,9 @@ We do. The "rate validator" framing — user enters what they're considering cha
 
 ## Branching
 
-- Base branch: `feat/sprint3-scorp-calculator`
+- Base branch: `main`
 - New branch: `feat/sprint4a-sponsor-rate`
-- PR target: `feat/sprint3-scorp-calculator`
+- PR target: `main`
 - Conventional Commits format: `feat(sponsor): ...`, `feat(tools): ...`, etc.
 
 ## Parallel sprint coordination
@@ -395,7 +395,7 @@ A creator hits `/sponsor-rate` on their phone:
 
 Separately, `/sponsor-rate/contribute` lets creators submit their own rates anonymously (goes to DB, queued for moderation, doesn't affect calculator yet).
 
-CI green, Lighthouse mobile ≥95, all tests pass (all 4 verdict paths). PR opened against `feat/sprint3-scorp-calculator`.
+CI green, Lighthouse mobile ≥95, all tests pass (all 4 verdict paths). PR opened against `main`.
 
 Write a `STATUS.md` update on completion, then stop.
 
@@ -403,16 +403,16 @@ Write a `STATUS.md` update on completion, then stop.
 
 ## How to kick this off (Jada — your checklist)
 
-After sprint 3 is open as a PR and you're ready to queue sprint 4a (this can run in parallel with sprint 4b):
+After sprint 3 is merged and you're ready to queue sprint 4a (this can run in parallel with sprint 4b):
 
 1. `cd ~/Desktop/cfoforcreators_freetools`
-2. `git checkout feat/sprint3-scorp-calculator && git pull`
+2. `git checkout main && git pull`
 3. `git checkout -b feat/sprint4a-sponsor-rate`
 4. `git push -u origin feat/sprint4a-sponsor-rate`
 5. Open a fresh Claude Code instance in this directory
 6. Paste THIS file's contents as the first prompt
 7. Run with `--dangerously-skip-permissions`
-8. Sleep. Check the PR in the morning.
+8. Check the PR when it's ready (~5-7 hr agent time).
 
 Expected runtime: 5–7 hours of agent time. The benchmark data table is the long pole — sourcing defensible numbers for 100+ rows takes time.
 
