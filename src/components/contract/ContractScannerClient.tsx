@@ -56,7 +56,7 @@ export default function ContractScannerClient() {
       return;
     }
     if (contractText.length > 50_000) {
-      setFormError("contract text exceeds 50,000 characters — try pasting the key sections only");
+      setFormError("contract text exceeds 50,000 characters. try pasting the key sections only");
       return;
     }
 
@@ -78,7 +78,7 @@ export default function ContractScannerClient() {
 
       if (!res.ok) {
         const json = await res.json().catch(() => ({}));
-        const msg = (json as Record<string, string>).message ?? "something went wrong — try again";
+        const msg = (json as Record<string, string>).message ?? "something went wrong. try again";
         setScanState({ phase: "error", message: msg });
         return;
       }
@@ -172,12 +172,12 @@ export default function ContractScannerClient() {
           },
         });
       } else {
-        setScanState({ phase: "error", message: "scan didn't complete — try again" });
+        setScanState({ phase: "error", message: "scan didn't complete. try again" });
       }
     } catch (err) {
       setScanState({
         phase: "error",
-        message: err instanceof Error ? err.message : "something went wrong — try again",
+        message: err instanceof Error ? err.message : "something went wrong. try again",
       });
     }
   }
@@ -197,7 +197,7 @@ export default function ContractScannerClient() {
       <header className="space-y-3">
         <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{tool.title}</h1>
         <p className="text-lg text-ink-muted leading-relaxed">{tool.oneLiner}</p>
-        <p className="text-sm text-ink-muted">free tool — no signup required to see your result.</p>
+        <p className="text-sm text-ink-muted">free tool. no signup required to see your result.</p>
       </header>
 
       {/* Legal disclaimer — required, non-negotiable */}
@@ -213,7 +213,7 @@ export default function ContractScannerClient() {
           law.
         </p>
         <p>
-          we never store your contract text long-term — scans are kept for 7 days for your shareable
+          we never store your contract text long-term. scans are kept for 7 days for your shareable
           result URL, then permanently deleted.
         </p>
       </aside>
@@ -259,7 +259,7 @@ export default function ContractScannerClient() {
               disabled={isScanning}
               rows={3}
               maxLength={2000}
-              placeholder="e.g. 'YouTube integration for a skincare brand, $5k, they mentioned verbally I keep the product — but that's not in the contract...'"
+              placeholder="e.g. 'YouTube integration for a skincare brand, $5k, they mentioned verbally I keep the product but that's not in the contract...'"
               className="w-full text-base rounded-lg border border-border px-3 py-3 bg-background focus:outline-none focus:ring-2 focus:ring-ring resize-none"
             />
           </div>
@@ -349,7 +349,7 @@ export default function ContractScannerClient() {
                 <aside className="space-y-3">
                   <p className="text-xs text-ink-muted">
                     your shareable result link is active until{" "}
-                    <strong className="text-ink">{deleteDate}</strong> — after that it&apos;s
+                    <strong className="text-ink">{deleteDate}</strong>. after that it&apos;s
                     permanently deleted per our 7-day retention policy.
                   </p>
                   <ToolShareBlock tool={tool} result={scanState.result} />

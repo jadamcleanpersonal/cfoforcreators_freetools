@@ -173,7 +173,7 @@ export function lookupBenchmark(input: BenchmarkLookupInput): BenchmarkResult {
     rateLow: Math.round(floor.low * (multiplier / baseMultiplier)),
     rateMid: Math.round(floor.mid * (multiplier / baseMultiplier)),
     rateHigh: Math.round(floor.high * (multiplier / baseMultiplier)),
-    source: "floor estimate — no matching data for this combination",
+    source: "floor estimate (no matching data for this combination)",
     dataConfidence: "low",
     matchType: "interpolated",
   };

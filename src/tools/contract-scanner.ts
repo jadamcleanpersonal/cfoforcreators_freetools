@@ -12,12 +12,12 @@ export type { ScanResult };
 // ── ToolDefinition ─────────────────────────────────────────────────────────────
 const tool: ToolDefinition<typeof contractInputSchema, ScanResult> = {
   slug: "contract-scanner",
-  title: "Brand contract scanner for creators — free, AI-powered",
+  title: "Brand contract scanner for creators. free, AI-powered.",
   oneLiner:
-    "paste your brand deal contract. get a plain-English breakdown of risky clauses, what's standard, and what to negotiate. no legal advice — just clarity.",
+    "paste your brand deal contract. get a plain-English breakdown of risky clauses, what's standard, and what to negotiate. no legal advice. just clarity.",
   metaTitle: "Free brand contract review for content creators (AI-powered, no signup)",
   metaDescription:
-    "paste your brand sponsorship contract. get a plain-English breakdown of risky clauses, what's standard, and what to negotiate. free, no signup, no legal advice — just clarity.",
+    "paste your brand sponsorship contract. get a plain-English breakdown of risky clauses, what's standard, and what to negotiate. free, no signup, no legal advice. just clarity.",
   priority: 3,
   isAiDriven: true,
 
@@ -30,7 +30,7 @@ const tool: ToolDefinition<typeof contractInputSchema, ScanResult> = {
         "paste the full contract text here. we strip email addresses, phone numbers, and tax IDs before sending to the AI.",
       type: "textarea",
       placeholder:
-        "paste your brand deal contract here (up to 50,000 characters — about 35 pages)...",
+        "paste your brand deal contract here (up to 50,000 characters, about 35 pages)...",
       required: true,
     },
     {
@@ -40,7 +40,7 @@ const tool: ToolDefinition<typeof contractInputSchema, ScanResult> = {
         "what's this deal about? who's the brand? anything discussed verbally that isn't in the contract? this helps the scan weigh clauses against your specific situation.",
       type: "textarea",
       placeholder:
-        "e.g. 'YouTube integration for a skincare brand, $5k, they mentioned verbally that I can keep the product — but that's not in the contract...'",
+        "e.g. 'YouTube integration for a skincare brand, $5k, they mentioned verbally that I can keep the product but that's not in the contract...'",
       required: false,
     },
     {
@@ -68,12 +68,12 @@ const tool: ToolDefinition<typeof contractInputSchema, ScanResult> = {
 
   buildShareText: (out: ScanResult) => {
     if (out.verdict === "no") {
-      return `caught some serious issues in my brand deal contract — almost signed without seeing them →`;
+      return `caught some serious issues in my brand deal contract. almost signed without seeing them →`;
     }
     if (out.verdict === "wait") {
       return `there are clauses to negotiate in this brand deal before i sign →`;
     }
-    return `ran my brand deal contract through this scanner. clean — signing it →`;
+    return `ran my brand deal contract through this scanner. clean. signing it →`;
   },
 
   ogTemplate: "result-headline",

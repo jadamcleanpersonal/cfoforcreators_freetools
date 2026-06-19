@@ -19,7 +19,7 @@ export const contractInputSchema = z.object({
   contract_text: z
     .string()
     .min(10, "paste the contract text to scan it")
-    .max(50_000, "contract text exceeds the 50,000 character limit — try pasting the key sections"),
+    .max(50_000, "contract text exceeds the 50,000 character limit. try pasting the key sections"),
   creator_context: z
     .string()
     .max(2000, "creator context must be under 2,000 characters")

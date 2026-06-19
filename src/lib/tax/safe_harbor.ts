@@ -30,7 +30,7 @@ export function computeSafeHarbor(projectedAnnualTax: number): SafeHarborResult 
   const methodologyNote =
     "We use the 90%-of-current-year method (IRS method A). " +
     "If you paid taxes last year, you may also qualify for safe harbor by paying 100% of last year's bill " +
-    "(or 110% if last year's AGI was over $150k) — whichever is less. " +
+    "(or 110% if last year's AGI was over $150k), whichever is less. " +
     "A CPA can run both methods if your income dropped significantly.";
 
   return { threshold, methodologyNote };

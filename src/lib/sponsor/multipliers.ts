@@ -42,7 +42,7 @@ export function applyMultipliers(
     adjustments.push({
       label: "90-day exclusivity window",
       multiplier: exclusivityMultiplier,
-      impact: "+50% — brands pay a premium to lock out competitors for 90 days",
+      impact: "+50%. brands pay a premium to lock out competitors for 90 days",
     });
   } else if (inputs.exclusivity_window_days >= 30) {
     const exclusivityMultiplier = 1.2;
@@ -50,7 +50,7 @@ export function applyMultipliers(
     adjustments.push({
       label: "30-day exclusivity window",
       multiplier: exclusivityMultiplier,
-      impact: "+20% — 30-day exclusivity is standard for most brand deals",
+      impact: "+20%. 30-day exclusivity is standard for most brand deals",
     });
   }
 
@@ -61,7 +61,7 @@ export function applyMultipliers(
     adjustments.push({
       label: "perpetual usage rights",
       multiplier: rightsMultiplier,
-      impact: "+150% — the brand owns the content forever and can run it as an ad indefinitely",
+      impact: "+150%. the brand owns the content forever and can run it as an ad indefinitely",
     });
   } else if (inputs.usage_rights === "brand_can_boost_paid") {
     const rightsMultiplier = 1.4;
@@ -69,7 +69,7 @@ export function applyMultipliers(
     adjustments.push({
       label: "paid amplification rights",
       multiplier: rightsMultiplier,
-      impact: "+40% — the brand can boost your content as a paid ad",
+      impact: "+40%. the brand can boost your content as a paid ad",
     });
   }
   // organic_only = base rate, no adjustment
@@ -83,7 +83,7 @@ export function applyMultipliers(
       adjustments.push({
         label: `${inputs.engagement_rate_pct}% engagement rate (exceptional)`,
         multiplier: engagementMultiplier,
-        impact: "+30% — engagement above 15% is a strong signal brands pay premium for",
+        impact: "+30%. engagement above 15% is a strong signal brands pay premium for",
       });
     } else if (inputs.engagement_rate_pct > 8) {
       const engagementMultiplier = 1.15;
@@ -91,7 +91,7 @@ export function applyMultipliers(
       adjustments.push({
         label: `${inputs.engagement_rate_pct}% engagement rate (above average)`,
         multiplier: engagementMultiplier,
-        impact: "+15% — engagement above 8% is above the platform average",
+        impact: "+15%. engagement above 8% is above the platform average",
       });
     }
     // Below 8% = no bonus (expected baseline)
@@ -110,7 +110,7 @@ export function applyMultipliers(
     adjustments.push({
       label: "high views-to-subscriber ratio",
       multiplier: viralMultiplier,
-      impact: "+10% — your average views suggest strong algorithmic reach",
+      impact: "+10%. your average views suggest strong algorithmic reach",
     });
   }
 

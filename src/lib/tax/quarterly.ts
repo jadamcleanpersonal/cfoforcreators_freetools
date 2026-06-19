@@ -165,7 +165,7 @@ export function computeQuarterlyPayment(input: QuarterlyPaymentInput): Quarterly
       verdictReason:
         `you missed one or more prior quarterly payments (underpaid by ~$${underpaidAmount.toLocaleString()}). ` +
         `sending $${catchUpTotal.toLocaleString()} now catches you up through ${currentQuarter.toUpperCase()}. ` +
-        `the IRS underpayment penalty is typically small — estimated ~$${penaltyEstimate.toLocaleString()} — ` +
+        `the IRS underpayment penalty is typically small (estimated ~$${penaltyEstimate.toLocaleString()}). ` +
         `but you can't avoid it by paying now. an Enrolled Agent can confirm your exact penalty.`,
     };
   }

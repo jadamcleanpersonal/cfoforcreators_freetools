@@ -115,7 +115,7 @@ const STATE_SCORP_EXTRAS: Partial<Record<string, StateScorpExtra>> = {
     gotchaTemplate: (fixed, pct, netProfit) => {
       const percentCost = Math.round(netProfit * 0.015);
       const total = fixed + percentCost;
-      return `California charges S-corps $800/year in franchise tax plus 1.5% of net income ($${percentCost.toLocaleString()}). That's $${total.toLocaleString()} extra this year — before any savings. This often makes S-corp not worth it below $80k profit.`;
+      return `California charges S-corps $800/year in franchise tax plus 1.5% of net income ($${percentCost.toLocaleString()}). That's $${total.toLocaleString()} extra this year before any savings. This often makes S-corp not worth it below $80k profit.`;
     },
   },
   NJ: {
@@ -132,7 +132,7 @@ const STATE_SCORP_EXTRAS: Partial<Record<string, StateScorpExtra>> = {
     percentOfDistributions: 0,
     stateFilingFee: 0,
     gotchaTemplate: () =>
-      "New York charges S-corps franchise tax and filing fees (~$300/year estimated). NYC residents also owe General Corporation Tax (GCT) at 8.85% of net income — if you're in NYC, run the numbers carefully before switching.",
+      "New York charges S-corps franchise tax and filing fees (~$300/year estimated). NYC residents also owe General Corporation Tax (GCT) at 8.85% of net income. If you're in NYC, run the numbers carefully before switching.",
   },
   OR: {
     fixedAnnual: 150, // minimum excise tax
@@ -140,7 +140,7 @@ const STATE_SCORP_EXTRAS: Partial<Record<string, StateScorpExtra>> = {
     percentOfDistributions: 0,
     stateFilingFee: 0,
     gotchaTemplate: () =>
-      "Oregon charges S-corps a $150 minimum excise tax. Oregon's Corporate Activity Tax (CAT) applies to revenue over $1M — unlikely to affect most creators.",
+      "Oregon charges S-corps a $150 minimum excise tax. Oregon's Corporate Activity Tax (CAT) applies to revenue over $1M (unlikely to affect most creators).",
   },
   TN: {
     fixedAnnual: 100, // franchise tax minimum
@@ -149,7 +149,7 @@ const STATE_SCORP_EXTRAS: Partial<Record<string, StateScorpExtra>> = {
     stateFilingFee: 0,
     gotchaTemplate: (_, __, netProfit) => {
       const exciseEstimate = Math.round(netProfit * 0.065 * 0.5); // rough estimate on ~50% distributions
-      return `Tennessee has no personal income tax, but S-corps owe a 6.5% excise tax on corporate net income (estimated ~$${exciseEstimate.toLocaleString()}/year based on your numbers) plus a franchise tax minimum of $100. This partially offsets the SE tax savings — make sure the math still works.`;
+      return `Tennessee has no personal income tax, but S-corps owe a 6.5% excise tax on corporate net income (estimated ~$${exciseEstimate.toLocaleString()}/year based on your numbers) plus a franchise tax minimum of $100. This partially offsets the SE tax savings. Make sure the math still works.`;
     },
   },
   NH: {
@@ -212,11 +212,11 @@ export function getReasonableSalary(inputs: ScorpInputs): ReasonableSalaryResult
 
   if (hours_per_week < 20) {
     defensibilityNote +=
-      " Part-time hours support a lower salary — you work fewer hours than a full-time equivalent.";
+      " Part-time hours support a lower salary; you work fewer hours than a full-time equivalent.";
   }
   if (audience_size === "1M+" && (niche === "finance" || niche === "tech")) {
     defensibilityNote +=
-      " Large audience in a high-scrutiny niche (finance/tech) — the IRS expects a salary closer to industry market rate.";
+      " Large audience in a high-scrutiny niche (finance/tech); the IRS expects a salary closer to industry market rate.";
   }
   if (recommended <= FLOOR) {
     defensibilityNote +=
@@ -243,7 +243,7 @@ export function scorpVerdict(
       verdict: "no",
       headline: "You're already an S-corp.",
       reason:
-        "You've already elected S-corp status. Nothing to switch — you're getting the SE tax savings. If you're wondering whether to revoke the election, that requires IRS consent and a 5-year wait before re-electing. Talk to a CPA before doing anything.",
+        "You've already elected S-corp status. Nothing to switch; you're getting the SE tax savings. If you're wondering whether to revoke the election, that requires IRS consent and a 5-year wait before re-electing. Talk to a CPA before doing anything.",
     };
   }
 
@@ -251,7 +251,7 @@ export function scorpVerdict(
     return {
       verdict: "no",
       headline: "Don't switch to an S-corp yet.",
-      reason: `Your profit of $${netProfit.toLocaleString()} is below the breakeven point (~$60k). S-corp running costs — payroll service, extra accounting, state fees — will eat most or all of the SE tax savings at this income level. Stay as a sole prop or single-member LLC for now. Re-run this when profit crosses $60k.`,
+      reason: `Your profit of $${netProfit.toLocaleString()} is below the breakeven point (~$60k). S-corp running costs (payroll service, extra accounting, state fees) will eat most or all of the SE tax savings at this income level. Stay as a sole prop or single-member LLC for now. Re-run this when profit crosses $60k.`,
     };
   }
 
@@ -269,7 +269,7 @@ export function scorpVerdict(
       verdict: "no",
       headline: "Don't switch to an S-corp yet.",
       reason:
-        "S-corp election locks you in for 5 years. You've been full-time less than a year — your income hasn't proven it's stable yet. If it drops below the breakeven point, you're stuck running payroll on a business that's not saving you money. Wait until you have at least 1–2 years of consistent income before making this commitment.",
+        "S-corp election locks you in for 5 years. You've been full-time less than a year, so your income hasn't proven it's stable yet. If it drops below the breakeven point, you're stuck running payroll on a business that's not saving you money. Wait until you have at least 1–2 years of consistent income before making this commitment.",
     };
   }
 
@@ -287,7 +287,7 @@ export function scorpVerdict(
     return {
       verdict: "wait",
       headline: "Wait one more quarter.",
-      reason: `You've been full-time 1–3 years, which means you're still in the income-proving phase. S-corp locks you in for 5 years. At $${netProfit.toLocaleString()} profit, the savings (~$2,500–$4,000/year) are real but not so large that they justify the 5-year commitment yet. Wait until income is more stable — ideally 2+ consistent strong quarters — then switch.`,
+      reason: `You've been full-time 1–3 years, which means you're still in the income-proving phase. S-corp locks you in for 5 years. At $${netProfit.toLocaleString()} profit, the savings (~$2,500–$4,000/year) are real but not so large that they justify the 5-year commitment yet. Wait until income is more stable, ideally 2+ consistent strong quarters, then switch.`,
     };
   }
 
@@ -311,7 +311,7 @@ function getStateGotchas(state: string, netProfit: number, salary: number): stri
     const noIncomeTaxStates = ["TX", "FL", "WA", "NV", "AK", "SD", "WY"];
     if (noIncomeTaxStates.includes(state)) {
       gotchas.push(
-        `${state} has no state income tax — S-corp savings here come entirely from SE tax avoidance. That's actually clean math: the federal SE tax on distributions is $0, and there's no state layer to complicate it.`,
+        `${state} has no state income tax, so S-corp savings here come entirely from SE tax avoidance. That's actually clean math: the federal SE tax on distributions is $0, and there's no state layer to complicate it.`,
       );
     }
     return gotchas;
@@ -324,7 +324,7 @@ function getStateGotchas(state: string, netProfit: number, salary: number): stri
 
   if (state === "NY") {
     gotchas.push(
-      "NYC-specific: if you live in New York City, you also owe NYC General Corporation Tax (GCT). The NYC GCT is roughly 8.85% of net income — this can make S-corp less attractive for NYC residents at lower income levels. The calculator above does not include NYC GCT.",
+      "NYC-specific: if you live in New York City, you also owe NYC General Corporation Tax (GCT). The NYC GCT is roughly 8.85% of net income. This can make S-corp less attractive for NYC residents at lower income levels. The calculator above does not include NYC GCT.",
     );
   }
 
@@ -357,9 +357,9 @@ function getFilingDeadline(): string {
   const marchDeadline = new Date(currentYear, 2, 15); // March 15 of current year
 
   if (now < marchDeadline) {
-    return `March 15, ${currentYear} (to elect for the ${currentYear} tax year — deadline is approaching)`;
+    return `March 15, ${currentYear} (to elect for the ${currentYear} tax year; deadline is approaching)`;
   }
-  return `March 15, ${currentYear + 1} (to elect for the ${currentYear + 1} tax year — you've missed this year's deadline)`;
+  return `March 15, ${currentYear + 1} (to elect for the ${currentYear + 1} tax year; you've missed this year's deadline)`;
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────

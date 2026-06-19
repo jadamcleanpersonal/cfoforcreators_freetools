@@ -25,7 +25,7 @@ export default function ContractTextarea({ value, onChange, error, disabled }: P
         disabled={disabled}
         rows={14}
         maxLength={MAX_CHARS + 1000} // allow slight overage so the count warning shows
-        placeholder="paste your brand deal contract here (up to 50,000 characters — about 35 pages)..."
+        placeholder="paste your brand deal contract here (up to 50,000 characters, about 35 pages)..."
         aria-label="Contract text"
         aria-describedby="contract-char-count"
         className={`w-full text-base rounded-lg border px-3 py-3 bg-background focus:outline-none focus:ring-2 focus:ring-ring resize-y min-h-[280px] ${
@@ -41,7 +41,7 @@ export default function ContractTextarea({ value, onChange, error, disabled }: P
         <span>
           {charCount > 0
             ? isOverLimit
-              ? `${(charCount - MAX_CHARS).toLocaleString()} characters over the limit — shorten or paste key sections only`
+              ? `${(charCount - MAX_CHARS).toLocaleString()} characters over the limit. shorten or paste key sections only`
               : `${charCount.toLocaleString()} / ${MAX_CHARS.toLocaleString()} characters`
             : ""}
         </span>
