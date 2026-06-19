@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { getToolBySlug } from "@/tools/_registry";
+import Link from "next/link";
 
 interface Props {
   slug: string;

@@ -1,10 +1,10 @@
+import { promises as fs } from "node:fs";
+import path from "node:path";
 import ToolEmbed from "@/components/learn/ToolEmbed";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
-import { promises as fs } from "node:fs";
-import path from "node:path";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -18,7 +18,9 @@ interface Frontmatter {
   publishedAt?: string;
 }
 
-async function loadMdx(slug: string): Promise<{ frontmatter: Frontmatter; content: string } | null> {
+async function loadMdx(
+  slug: string,
+): Promise<{ frontmatter: Frontmatter; content: string } | null> {
   try {
     const raw = await fs.readFile(path.join(CONTENT_DIR, `${slug}.mdx`), "utf8");
     const { data, content } = matter(raw);
