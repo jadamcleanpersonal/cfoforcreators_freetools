@@ -66,7 +66,7 @@ function renderResult(output: SponsorRateResult, input: SponsorRateInput): Resul
 
   // Show applied adjustments
   if (output.adjustments.length > 0) {
-    breakdown.push({ label: "—", value: "adjustments applied" });
+    breakdown.push({ label: "adjustments", value: "applied below" });
     for (const adj of output.adjustments) {
       breakdown.push({
         label: adj.label,
@@ -110,16 +110,16 @@ function renderResult(output: SponsorRateResult, input: SponsorRateInput): Resul
     output.verdict === "yes"
       ? `${fmt(input.your_asking_rate)} is in market range for your ${platLabel} ${delLabel}`
       : output.verdict === "no" && output.deltaDirection === "too_low"
-        ? `${fmt(input.your_asking_rate)} is under market — the median is ${fmt(output.marketMid)}`
+        ? `${fmt(input.your_asking_rate)} is under market. the median is ${fmt(output.marketMid)}`
         : output.verdict === "no" && output.deltaDirection === "too_high"
-          ? `${fmt(input.your_asking_rate)} is above market — the ceiling is ${fmt(output.marketHigh)}`
+          ? `${fmt(input.your_asking_rate)} is above market. the ceiling is ${fmt(output.marketHigh)}`
           : `not enough data to validate this rate confidently`;
 
   const subline = `${platLabel} · ${input.niche} · ${input.audience_size} · ${delLabel}`;
 
   const recommendation =
     output.verdict === "no" && output.deltaDirection === "too_low"
-      ? `start your next pitch at ${fmt(output.marketLow)}. don't drop below that even if a brand pushes back — they know the market.`
+      ? `start your next pitch at ${fmt(output.marketLow)}. don't drop below that even if a brand pushes back. they know the market.`
       : output.verdict === "no" && output.deltaDirection === "too_high"
         ? `reset to ${fmt(Math.round((output.marketMid + output.marketHigh) / 2))}–${fmt(output.marketHigh)} for a faster close rate. keep your current rate if you're consistently getting yeses.`
         : output.verdict === "wait"
@@ -128,7 +128,7 @@ function renderResult(output: SponsorRateResult, input: SponsorRateInput): Resul
 
   const caveat =
     output.dataConfidence === "low"
-      ? `this range is triangulated — no direct public data for this exact niche/platform combination. treat as a starting point, not a firm market rate.`
+      ? `this range is triangulated. no direct public data for this exact niche/platform combination. treat as a starting point, not a firm market rate.`
       : `based on ${output.dataSource}. rates vary by audience quality, brand budget cycle, and negotiation. these are market medians, not guarantees.`;
 
   return {
@@ -149,17 +149,17 @@ const tool: ToolDefinition<typeof sponsorRateInputSchema, SponsorRateResult> = {
   slug: "sponsor-rate",
   title: "What should you charge for a sponsorship? Free rate calculator",
   oneLiner:
-    "9 questions. get a real yes / no / wait answer on whether the rate you're considering is in market range — including when you're undercharging.",
-  metaTitle: "Sponsor rate calculator for creators — based on Karat 2024 + industry data",
+    "9 questions. get a real yes / no / wait answer on whether the rate you're considering is in market range, including when you're undercharging.",
+  metaTitle: "Sponsor rate calculator for creators. based on Karat 2024 + industry data.",
   metaDescription:
-    "free tool. 9 questions. get a real yes/no/wait answer on whether the rate you're considering is in market range — including when you're undercharging or overcharging.",
+    "free tool. 9 questions. get a real yes/no/wait answer on whether the rate you're considering is in market range, including when you're undercharging or overcharging.",
   priority: 3,
   inputs: sponsorRateInputSchema,
   inputFields: [
     {
       name: "primary_platform",
       label: "main platform",
-      helpText: "where this sponsorship will live — platform drives the entire rate model",
+      helpText: "where this sponsorship will live. platform drives the entire rate model",
       type: "radio",
       options: [
         { value: "youtube_long", label: "YouTube (long-form)" },
@@ -177,7 +177,7 @@ const tool: ToolDefinition<typeof sponsorRateInputSchema, SponsorRateResult> = {
       name: "niche",
       label: "content niche",
       helpText:
-        "your niche affects brand demand — finance and tech creators command premiums because their audiences have higher purchase intent",
+        "your niche affects brand demand. finance and tech creators command premiums because their audiences have higher purchase intent",
       type: "radio",
       options: [
         { value: "gaming", label: "gaming" },
@@ -219,7 +219,7 @@ const tool: ToolDefinition<typeof sponsorRateInputSchema, SponsorRateResult> = {
       name: "engagement_rate_pct",
       label: "engagement rate % (optional)",
       helpText:
-        "likes + comments + shares ÷ views × 100. if you don't know it, leave this blank — we'll estimate from your views-to-audience ratio",
+        "likes + comments + shares ÷ views × 100. if you don't know it, leave this blank. we'll estimate from your views-to-audience ratio",
       type: "percent",
       placeholder: "",
       required: false,
@@ -290,7 +290,7 @@ const tool: ToolDefinition<typeof sponsorRateInputSchema, SponsorRateResult> = {
   renderResult,
   explainerSlug: "how-to-price-a-brand-deal",
   explainerExcerpt:
-    "most rate calculators just tell you to charge more. this one tells you when you're overcharging too. here's how brand deal pricing actually works — and where the real money is.",
+    "most rate calculators just tell you to charge more. this one tells you when you're overcharging too. here's how brand deal pricing actually works, and where the real money is.",
   buildShareText: (out: SponsorRateResult) => {
     const fmt = (n: number) =>
       new Intl.NumberFormat("en-US", {
@@ -308,7 +308,7 @@ const tool: ToolDefinition<typeof sponsorRateInputSchema, SponsorRateResult> = {
     if (out.verdict === "no" && out.deltaDirection === "too_high") {
       return `turns out i was overcharging for sponsorships. market median is ${fmt(out.marketMid)} →`;
     }
-    return `couldn't fully validate my sponsor rate (thin data for my niche) — here's how i'm triangulating →`;
+    return `couldn't fully validate my sponsor rate (thin data for my niche). here's how i'm triangulating →`;
   },
   ogTemplate: "result-headline",
   relatedTools: ["tax-estimator", "scorp-calculator"],

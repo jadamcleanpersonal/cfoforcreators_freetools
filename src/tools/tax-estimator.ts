@@ -124,7 +124,7 @@ function renderResult(output: TaxEstimatorOutput, input: TaxEstimatorInput): Res
   const caveat =
     `estimate based on ${pct(0.9)}-of-projected-tax safe harbor. ` +
     (output.stateTax > 0
-      ? `${output.stateName} state estimate is approximate — verify with an accountant at filing. `
+      ? `${output.stateName} state estimate is approximate. verify with an accountant at filing. `
       : "") +
     `2026 federal brackets use 2025 IRS numbers pending official 2026 release.`;
 
@@ -147,7 +147,7 @@ const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> =
   title: "free quarterly tax calculator for creators",
   oneLiner:
     "plug in your creator income. get the exact dollar amount to send the IRS this quarter.",
-  metaTitle: "quarterly tax calculator for content creators — free, no signup",
+  metaTitle: "quarterly tax calculator for content creators. free, no signup.",
   metaDescription:
     "free tool. plug in your creator income and expenses. get the exact amount to send the IRS this quarter, including state tax. no signup needed.",
   priority: 1,
@@ -209,7 +209,7 @@ const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> =
       name: "total_creator_income_ytd",
       label: "total creator income so far this year",
       helpText:
-        "everything from your creator work: AdSense, brand deals, Patreon, affiliate, merch, courses — before expenses. year-to-date total.",
+        "everything from your creator work: AdSense, brand deals, Patreon, affiliate, merch, courses. before expenses. year-to-date total.",
       type: "currency",
       placeholder: "0",
       required: true,
@@ -218,7 +218,7 @@ const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> =
       name: "business_expenses_ytd",
       label: "business expenses so far this year",
       helpText:
-        "camera gear, software subscriptions, home office, editing, travel for content — things you bought specifically for your creator business. year-to-date total.",
+        "camera gear, software subscriptions, home office, editing, travel for content. anything you bought specifically for your creator business. year-to-date total.",
       type: "currency",
       placeholder: "0",
       required: true,
@@ -265,7 +265,7 @@ const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> =
       name: "withholding_from_w2",
       label: "federal tax withheld from W-2 paychecks so far this year",
       helpText:
-        "check your most recent pay stub — it's labeled 'federal income tax withheld'. leave 0 if you have no W-2 job.",
+        "check your most recent pay stub. it's labeled 'federal income tax withheld'. leave 0 if you have no W-2 job.",
       type: "currency",
       placeholder: "0",
       defaultValue: 0,
@@ -276,7 +276,7 @@ const tool: ToolDefinition<typeof taxEstimatorInputSchema, TaxEstimatorOutput> =
   renderResult,
   explainerSlug: "how-quarterly-taxes-actually-work",
   explainerExcerpt:
-    "quarterly taxes are not optional. here's how they actually work — in plain english.",
+    "quarterly taxes are not optional. here's how they actually work, in plain english.",
   buildShareText: (out) =>
     `just figured out i owe $${out.amountThisQuarter.toLocaleString()} in quarterly taxes this quarter. wish i'd known about this tool 6 months ago →`,
   ogTemplate: "result-headline",

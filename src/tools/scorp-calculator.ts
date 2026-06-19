@@ -108,20 +108,20 @@ function renderResult(output: ScorpResult, input: ScorpCalculatorInput): ResultD
       ? `~${fmt(output.netSavings)}/yr saved`
       : output.verdict === "no"
         ? "don't switch yet"
-        : "wait — borderline";
+        : "borderline. wait.";
 
   const headline =
     output.verdict === "yes"
       ? `save ~${fmt(output.netSavings)} per year by switching to S-corp`
       : output.verdict === "no"
         ? "S-corp would not save you money right now"
-        : "right at the breakeven — wait for more stability";
+        : "right at the breakeven. wait for more stability.";
 
   const subline = `${input.state} · ${input.niche} · ${input.audience_size} audience · ${input.hours_per_week} hrs/week`;
 
   const recommendation =
     output.verdict === "yes"
-      ? `file Form 2553 with the IRS by ${output.filingDeadline}. your accountant handles this — it takes about a week.`
+      ? `file Form 2553 with the IRS by ${output.filingDeadline}. your accountant handles this. it takes about a week.`
       : output.verdict === "wait"
         ? `re-run this calculator next quarter. if profit stays above $80k, switch then.`
         : undefined;
@@ -150,9 +150,9 @@ const tool: ToolDefinition<typeof scorpCalculatorInputSchema, ScorpResult> = {
   title: "S-corp calculator for content creators",
   oneLiner:
     "11 creator-specific questions. get a real yes / no / wait answer on whether switching to S-corp would actually save you money.",
-  metaTitle: "S-corp calculator for content creators — honest yes/no answer in under 3 minutes",
+  metaTitle: "S-corp calculator for content creators. honest yes/no answer in under 3 minutes.",
   metaDescription:
-    "free tool. 11 creator-specific questions. get a real yes/no/wait answer on whether switching to an S-corp would actually save you money — including the cases where it wouldn't.",
+    "free tool. 11 creator-specific questions. get a real yes/no/wait answer on whether switching to an S-corp would actually save you money, including the cases where it wouldn't.",
   priority: 2,
   inputs: scorpCalculatorInputSchema,
   inputFields: [
@@ -175,7 +175,7 @@ const tool: ToolDefinition<typeof scorpCalculatorInputSchema, ScorpResult> = {
       name: "niche",
       label: "content niche",
       helpText:
-        "your niche affects what the IRS considers a 'reasonable salary' — finance and tech creators face higher salary expectations than lifestyle creators",
+        "your niche affects what the IRS considers a 'reasonable salary'. finance and tech creators face higher salary expectations than lifestyle creators",
       type: "radio",
       options: [
         { value: "gaming", label: "gaming" },
@@ -192,7 +192,7 @@ const tool: ToolDefinition<typeof scorpCalculatorInputSchema, ScorpResult> = {
       name: "audience_size",
       label: "total audience size",
       helpText:
-        "across all platforms. a 1M+ creator can't claim a $30k salary — the IRS knows your channel is worth more",
+        "across all platforms. a 1M+ creator can't claim a $30k salary. the IRS knows your channel is worth more",
       type: "radio",
       options: [
         { value: "<10k", label: "under 10k" },
@@ -224,7 +224,7 @@ const tool: ToolDefinition<typeof scorpCalculatorInputSchema, ScorpResult> = {
       name: "business_expenses",
       label: "annual business expenses",
       helpText:
-        "camera gear, software subscriptions, editing, studio costs, home office, travel for content — things you'd deduct on a Schedule C",
+        "camera gear, software subscriptions, editing, studio costs, home office, travel for content. anything you'd deduct on a Schedule C",
       type: "currency",
       placeholder: "0",
       required: true,

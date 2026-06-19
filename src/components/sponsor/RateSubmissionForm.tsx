@@ -112,7 +112,7 @@ export default function RateSubmissionForm() {
       setStatus("success");
     } catch {
       setStatus("error");
-      setErrorMessage("something went wrong — try again");
+      setErrorMessage("something went wrong. try again");
     }
   }
 
@@ -122,7 +122,7 @@ export default function RateSubmissionForm() {
         <p className="font-semibold text-ink">submitted. thank you.</p>
         <p className="text-sm text-ink-muted">
           your rate is queued for review. once approved it will help calibrate the calculator for
-          creators like you. it&apos;s 100% anonymous — no personal info stored.
+          creators like you. it&apos;s 100% anonymous. no personal info stored.
         </p>
       </div>
     );
