@@ -4,6 +4,7 @@
 // Saves result to Supabase with 7-day delete_after for disclosed retention policy.
 // Returns SSE stream: verdict → flags → summary → done (with id).
 
+import { extractAndSaveClausePatterns } from "@/lib/contract/extract_clause_pattern";
 import { streamScan } from "@/lib/contract/scan";
 import { contractInputSchema } from "@/lib/contract/types";
 import type { FlaggedClause, ScanEvent, ScanResult } from "@/lib/contract/types";
@@ -190,6 +191,24 @@ export async function POST(req: Request) {
               flagged_count: flaggedClauses.length,
               risky_count: flaggedClauses.filter((c) => c.category === "risky").length,
             });
+
+            // Clause pattern extraction — only if user opted in
+            if (input.save_clause_patterns && input.niche && flaggedClauses.length > 0) {
+              // Fire-and-forget: don't block the response on extraction
+              extractAndSaveClausePatterns(flaggedClauses, {
+                niche: input.niche,
+                platform: input.creator_context?.toLowerCase().includes("tiktok")
+                  ? "tiktok"
+                  : input.creator_context?.toLowerCase().includes("youtube")
+                    ? "youtube"
+                    : "other",
+                audienceTier: "<10k", // default — v2 will capture audience size from form
+                dealSizeTier: "under_1k", // default — v2 will capture deal size from form
+                sourceScanId: id,
+              }).catch((err) => {
+                console.error("[clause-pattern] background extraction failed:", err);
+              });
+            }
           }
         } else {
           // Model didn't produce a verdict (malformed response)

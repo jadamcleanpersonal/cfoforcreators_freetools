@@ -25,6 +25,7 @@ export const contractInputSchema = z.object({
     .max(2000, "creator context must be under 2,000 characters")
     .optional(),
   niche: z.enum(NICHES).optional(),
+  save_clause_patterns: z.boolean().optional().default(false),
 });
 
 export type ContractInput = z.infer<typeof contractInputSchema>;
