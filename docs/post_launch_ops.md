@@ -2,6 +2,10 @@
 
 Once the foundation + the four-tool suite is shipped, this is what you do every week to convert waitlist signups into paying members of the AI CFO product. This is the operating system for the first 6 months — until the paid product launches.
 
+**This doc covers steady-state ops (the weekly rhythm).** The 14-day launch sprint lives in `docs/launch_strategy.md` — read that first if you haven't launched yet.
+
+**Founder-led brand.** Jada's name attached, Jada's face on Loom recordings, "—Jada" sign-off on newsletters, founder POV posts on X. Personal brand IS the marketing. The voice spec in `docs/ai_cfo_system_prompt.md` applies throughout.
+
 **Time budget for this playbook: ~8-10 hours/week.** If it's eating more, prune.
 
 ---
@@ -51,7 +55,7 @@ Then in a top comment: "Direct link if useful: [URL]. No email gate before the r
 
 Mods on r/PartneredYoutube and r/CreatorEconomy are okay with self-promotion when the value is clear AND there's no email gate before the value reveal. This is why we built the tools with the email gate AFTER the result, not before. Don't break that pattern.
 
-### Post hooks (use these as templates)
+### Post hooks (use these as templates — first-person, founder voice)
 
 For the tax estimator:
 - "TIL the IRS quarterly deadline for Q[X] is [date]. Built a calc that figures out what creators specifically owe."
@@ -62,6 +66,7 @@ For the S-corp calc:
 - "Spent 3 hours doing the S-corp math last week. Then built a calculator so I never have to do it again. Honest 'no' verdict for [State] creators under $80k."
 - "S-corp election is a 5-YEAR commitment. Here's a calc that tells you when you actually shouldn't switch yet (not the same as Bizee/Collective's pitch)."
 - "Niche-specific reasonable salary calculator for creators — finance niche needs to defend a higher number than lifestyle. Wish I'd known."
+- "Added time cost + cash flow timing to my s-corp calc. Sometimes the math works on paper and breaks when sponsor checks land lumpy. Honest verdict, no upsell."
 
 For the sponsor rate calc:
 - "Tired of seeing creators undercharge for sponsorships. Built a calc that uses Karat 2024 data + tells you when you're charging too HIGH too (most calcs only ever say 'charge more')."
@@ -250,15 +255,17 @@ Check these in PostHog + Supabase. Set up a weekly review in your calendar.
 
 ### Weekly review (Friday, 30 min)
 
-| Metric | Target | How to read it |
+Cold-start realistic targets (replaces the original aspirational targets — those were written assuming a warm audience seed).
+
+| Metric | Target (cold start, founder-led) | How to read it |
 |---|---|---|
-| New waitlist signups this week | 50+ by month 2, 200+ by month 6 | Supabase: `select count(*) from waitlist where created_at > now() - interval '7 days'` |
+| New waitlist signups this week | 30+ by week 4, 80+ by week 8, 200+ by month 4 | Supabase: `select count(*) from waitlist where created_at > now() - interval '7 days'` |
 | Tool completions per tool | Track which tool drives the most waitlist conversions | PostHog: `tool_result_shown` event by `tool_slug` property |
-| Email gate conversion rate | >25% (industry: 8-15%) | PostHog funnel: `tool_result_shown` → `email_submitted` |
+| Email gate conversion rate | 18-32% first 30 days, 25%+ once dialed | PostHog funnel: `tool_result_shown` → `email_submitted` |
 | Reddit click-through rate | >3% on posts that linked | UTM tracking via PostHog |
-| Newsletter open rate | >40% (industry: 25%) | Beehiiv dashboard |
-| Newsletter click-through rate | >8% (industry: 2-4%) | Beehiiv dashboard |
-| Tally form fills (deep-dive intakes) | Until 100, then transition to scheduled | Supabase: `select count(*) from deepdive_intakes` |
+| Newsletter open rate | 30-40% cold list (founder-signed gets +5pp), 40%+ once retained subs accumulate | Beehiiv dashboard |
+| Newsletter click-through rate | 4-8% cold, 8%+ once dialed | Beehiiv dashboard |
+| Tally form fills (deep-dive intakes) | 30-80 in first 8 weeks, fills 100 by month 3-4 | Supabase: `select count(*) from deepdive_intakes` |
 | Loom-to-reply rate | >50% | Manual tracking in /admin |
 
 ### Monthly review (1st Friday of the month, 90 min)
@@ -346,19 +353,21 @@ Same as the AI CFO. Plain language. No jargon. Lead with the answer. Honest abou
 
 ---
 
-## What to do RIGHT NOW (your day-1 ops checklist)
+## What to do RIGHT NOW
 
-After sprint 4 (both tools) ships and you have all four free tools live:
+**For the first 14 days of launch:** follow `docs/launch_strategy.md`. It's day-by-day from pre-launch prep through public launch through the day-14 retrospective.
 
-- [ ] Set up the Beehiiv welcome sequence (3 emails over 7 days, the first one same day as signup)
+**For day 15+ steady state ops setup,** check these once:
+
+- [ ] Beehiiv welcome sequence active (3 emails over 7 days — copy in `docs/launch_strategy.md`)
 - [ ] Write 12 weeks of newsletter subject line drafts in advance — it's the highest-leverage prep work
-- [ ] Create the UTM tracking template doc so every Reddit/Twitter link is tagged
-- [ ] Schedule weekly Loom recording block on Tuesdays
-- [ ] Bookmark the PostHog dashboard
-- [ ] Bookmark the Supabase /admin route for the spots counter view
-- [ ] Set up a Tuesday calendar reminder: "record this week's Looms"
-- [ ] Set up a Wednesday calendar reminder: "write Thursday newsletter"
-- [ ] Set up a Friday calendar reminder: "weekly metrics review"
-- [ ] Decide on a Twitter handle if you haven't (update Footer.tsx placeholder)
+- [ ] UTM tracking template memorized: `?utm_source=reddit_{sub}&utm_medium=organic&utm_campaign={tool}`
+- [ ] Loom recording setup tested — camera framing, lighting, audio dialed
+- [ ] Tuesday calendar reminder: "record this week's founder deep-dive Looms (batch 5)"
+- [ ] Wednesday calendar reminder: "write Thursday newsletter"
+- [ ] Friday calendar reminder: "weekly metrics review (30 min)"
+- [ ] PostHog dashboard bookmarked
+- [ ] Supabase /admin route bookmarked for the spots counter view
+- [ ] Twitter handle decided + Footer.tsx updated
 
 That's the operating system. Run it for 6 months. Then evaluate.

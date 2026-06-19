@@ -1,6 +1,6 @@
 # Sprint 3 — S-Corp Calculator (overnight build kickoff)
 
-This is the prompt to paste into Claude Code for the unsupervised overnight build of the S-corp calculator. Sprint 2 (tax estimator) should be open as a PR — sprint 3 stacks on top of that branch.
+This is the prompt to paste into Claude Code for the unsupervised overnight build of the S-corp calculator. Sprint 1 + Sprint 2 are now merged to main — sprint 3 branches off main directly (no stacking needed).
 
 ---
 
@@ -20,12 +20,10 @@ This is the tool that anchors Reddit posts on r/PartneredYoutube and r/CreatorEc
 
 ## Branching
 
-- Base branch: `feat/sprint2-tax-estimator` (sprint 2 is unmerged, sprint 3 stacks)
+- Base branch: `main` (sprint 1 + sprint 2 are now merged to main)
 - New branch: `feat/sprint3-scorp-calculator`
-- PR target: `feat/sprint2-tax-estimator`
+- PR target: `main`
 - Conventional Commits format: `feat(scorp): ...`, `feat(tools): ...`, `test(scorp): ...`, `docs: ...`
-
-Note: this creates a 3-deep stack (sprint 1 → sprint 2 → sprint 3). Jada will merge them in order. When merging sprint 2 into sprint 1's branch, this PR's base will auto-rebase. Don't fight that.
 
 ## Pruned tool roadmap reminder
 
@@ -472,10 +470,8 @@ If you ship all of that, write a `STATUS.md` update describing what shipped and 
 
 ## How to kick this off (Jada — your checklist)
 
-After sprint 2 is open as a PR and you're ready to queue sprint 3:
-
 1. `cd ~/Desktop/cfoforcreators_freetools`
-2. `git checkout feat/sprint2-tax-estimator && git pull` (make sure you have latest)
+2. `git checkout main && git pull` (make sure you have latest)
 3. `git checkout -b feat/sprint3-scorp-calculator`
 4. `git push -u origin feat/sprint3-scorp-calculator`
 5. Open Claude Code in this directory
