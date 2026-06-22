@@ -1,5 +1,6 @@
 import { subscribe } from "@/lib/beehiiv";
 import { Events, trackServerEvent } from "@/lib/posthog";
+import { sendWaitlistSignupNotification } from "@/lib/resend";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -92,6 +93,22 @@ export async function POST(req: Request) {
     } catch (beehiivError) {
       // Non-fatal — user is still captured in Supabase
       console.error("beehiiv subscribe error:", beehiivError);
+    }
+
+    // 3. Notify the operator (non-fatal — never block on email send)
+    try {
+      await sendWaitlistSignupNotification({
+        email,
+        firstName,
+        source,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        utm_content,
+        ipCountry,
+      });
+    } catch (notificationError) {
+      console.error("waitlist notification email error:", notificationError);
     }
 
     await trackServerEvent(Events.WAITLIST_SUCCESS, { source, email });

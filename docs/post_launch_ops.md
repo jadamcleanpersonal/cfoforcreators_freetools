@@ -14,12 +14,13 @@ Once the foundation + the four-tool suite is shipped, this is what you do every 
 
 | Day | Activity | Time |
 |---|---|---|
-| Monday | Reddit posts (2-3 subreddits) + reply to last week's threads | 90 min |
+| Monday AM | Reddit posts (2-3 subreddits) + reply to last week's threads | 90 min |
+| Monday PM | CreatorLand DM outreach (10-15 personalized DMs, finance/business creators) | 90 min |
 | Tuesday | Founder deep-dive Loom recordings (batch 3-5 intakes) | 90 min |
 | Wednesday | Write the Thursday newsletter | 60 min |
 | Wednesday | Write the week's MDX content piece | 90 min |
 | Thursday | Send newsletter, post to Twitter, schedule next week's Reddit | 30 min |
-| Friday | Review PostHog funnel + Supabase numbers, adjust | 30 min |
+| Friday | Review PostHog funnel + Supabase numbers + CreatorLand reply tracker | 30 min |
 | Saturday/Sunday | OFF (but check waitlist daily, ~5 min) | 35 min total |
 
 That's ~8 hours of focused work plus ~30 min of daily ambient checking. Anything more than this is over-investment for pre-paid-launch traffic.
@@ -249,6 +250,174 @@ The Tally form asks if you can use their numbers in a case study (anonymized). F
 
 ---
 
+## Channel 5 — CreatorLand DM outreach (precision channel)
+
+Reddit is volume; CreatorLand is precision. The combo covers both ends of the funnel — Reddit pulls strangers in cold, CreatorLand turns specific strangers into warm 1:1 relationships before they've even joined the waitlist.
+
+The rule: **"i built this for creators (myself included), sharing it because it might be useful."** That's the whole frame. No ask. No feedback request. No pitch. Just sharing something you actually built because you needed it. The authenticity comes from the fact that it's true — you really did build this for creators and it really is free.
+
+### Targeting (first 4 weeks: finance + business creators only)
+
+Filter creators on CreatorLand by:
+- **Niche:** finance / business / personal finance / business education (start narrow, broaden after 4 weeks if conversion lands)
+- **Audience size:** 10k–100k (sub-10k often too early for tax/S-corp decisions; 100k+ gets DM-fatigued and ignores)
+- **Active in last 30 days:** skip dormant accounts
+- **No prior reach-out:** track sent DMs in your sheet so you never double-message
+
+Add to the funnel later (week 5+): beauty/lifestyle, tech/programming, fitness — each with its own tool-of-the-week lead (sponsor rate for beauty/lifestyle, S-corp for tech, mixed for fitness).
+
+### Cadence
+
+- **10–15 DMs per week.** Short DMs are fast to send. Don't push past 20/week even when it feels easy.
+- **5–8 minutes per DM:** 2 minutes glancing at their recent posts so the opener is real, 3–5 minutes writing the share.
+- **Monday afternoon block.** Same window every week. Habit beats motivation.
+
+### DM voice rules
+
+- Lowercase. Short. Conversational. The way you'd actually text another creator.
+- One genuine sentence about something they made recently — not a compliment, just a recognition.
+- "i built [tool] because [problem i had as a creator]" — first-person, honest, brief.
+- The tool URL goes mid-message, not at the end (people scan the first half, miss the last line).
+- Never say "love your content" or "huge fan." Sounds like a pitch deck.
+- Sign "— jada." First-person. Creator-to-creator.
+- Length: 60–110 words. Under 60 feels dashed-off, over 110 reads as marketing.
+
+### DM Template 1 — finance / business creator (lead: tax estimator)
+
+```
+hey [name],
+
+saw your [recent video / thread] on [specific topic].
+
+i built a quarterly tax estimator for creators because i kept getting
+generic freelancer numbers that didn't fit how creator income actually
+works (adsense + sponsors + patreon on different schedules):
+cfoforcreators.com/tax-estimator
+
+free, no signup before the result. sharing in case it's useful for you
+or anyone in your audience asking about quarterlies.
+
+— jada
+```
+
+### DM Template 2 — beauty / lifestyle creator (lead: sponsor rate)
+
+```
+hey [name],
+
+caught your [recent collab / sponsored post / haul].
+
+i kept seeing creators undercharge for brand deals, so i built a sponsor
+rate calculator using karat 2024 medians + niche multipliers. it also
+flags when you're overcharging, which most calcs won't do:
+cfoforcreators.com/sponsor-rate
+
+free, no signup. sharing in case it's useful next time a brand pitches
+a number that feels off.
+
+— jada
+```
+
+### DM Template 3 — tech / programming creator (lead: S-corp calc)
+
+```
+hey [name],
+
+your [recent video / thread] on [topic] was sharp.
+
+i kept watching creators get pushed into s-corp election by services
+that don't run the math honestly (the 5-year IRS lockout + state
+gotchas eat the savings). built a calc that gives an honest yes / no /
+wait verdict: cfoforcreators.com/scorp-calculator
+
+free, no signup. sharing in case it's useful — about half of california
+creators under $80k get a "no" here.
+
+— jada
+```
+
+### DM Template 4 — multi-niche / fallback (lead: tax estimator + acknowledge their niche)
+
+```
+hey [name],
+
+saw your [recent post / video / thread]. nice work.
+
+i built cfoforcreators.com because creator finance tools are mostly
+designed for freelancers or w-2 employees, and creator income (multi-
+platform, lumpy, sponsor-heavy) doesn't fit either. four free tools so
+far. tax estimator is the most-used:
+
+cfoforcreators.com/tax-estimator
+
+no signup before the result. sharing in case it's useful — for you or
+anyone in your audience.
+
+— jada
+```
+
+### One light reminder script (only if you've already had a real exchange)
+
+If a creator replied to your original DM with a real engagement (asked a question, gave a reaction, said thanks), you can send ONE follow-up at the moment something else relevant ships — never as a check-in or bump.
+
+```
+hey [name],
+
+remembered our exchange about [their question / their reaction].
+
+just shipped [specific new thing — clause pattern data, sponsor rate
+update, whatever's new]. thought you might want to know.
+
+— jada
+```
+
+If they didn't reply to the original, **do not follow up.** The "sharing it, no ask" frame breaks the second you send a bump. Let it sit. They'll come back when they need it, or they won't.
+
+### Tracking — Google Sheet
+
+Set up a simple sheet (`creatorland_outreach` or similar). Columns:
+
+| Column | Notes |
+|---|---|
+| date_sent | YYYY-MM-DD of original DM |
+| creator_handle | their CreatorLand profile or main platform handle |
+| niche | finance / beauty / tech / fitness / other |
+| audience_size_tier | 10k–25k / 25k–100k / 100k+ |
+| tool_led_with | tax / scorp / sponsor / contract |
+| dm_template_used | template 1 / 2 / 3 / 4 |
+| response | yes / no_reply / declined |
+| response_date | YYYY-MM-DD |
+| feedback_notes | their actual words, paraphrased |
+| joined_waitlist | yes / no / unknown |
+| share_yes | did they share with their audience? |
+
+Update on Friday during the metrics review. Two minutes per row.
+
+### CreatorLand metrics (review Friday)
+
+Because the frame is "sharing it, no ask," reply rate is NOT the primary metric. Many creators won't reply because there's nothing to reply to. That's expected.
+
+- **Reply rate:** 15–25% is healthy. Don't chase higher — chasing higher means turning the DM into an ask.
+- **Waitlist conversion from DMs sent:** target 8–15% of recipients (NOT repliers) eventually join the waitlist. They click through, try the tool, and self-convert quietly. Track via UTM tag `utm_source=creatorland_dm`.
+- **Share-back / mention rate:** track when a recipient publicly mentions or shares the tool with their audience. No target, but worth counting.
+- **"Felt good" check:** subjective. After sending each batch, would you be embarrassed if a creator screenshot one of your DMs and posted it publicly? If no, the voice is right. If yes, tone it down.
+
+If waitlist conversion drops below 5% for 2 weeks running, the personalization is too thin or the tool led with is wrong for the niche — iterate.
+
+### What NOT to do on CreatorLand
+
+- Don't ask for anything in the DM — not feedback, not a reply, not a share, not a signup
+- Don't send the same template to multiple creators without changing the personal opener
+- Don't follow up at all unless you've already had a real exchange
+- Don't pitch the paid product in any DM (the tools speak for themselves)
+- Don't promise specific savings or make claims about their personal numbers ("you'll save $5k" — no)
+- Don't compliment ("love your content," "huge fan" — sounds like marketing)
+- Don't DM creators who haven't posted in 30+ days
+- Don't go above 20 DMs/week, ever
+- Don't track or report DM stats publicly — that turns the channel into marketing-as-content and breaks the frame
+
+---
+
 ## Metrics dashboard
 
 Check these in PostHog + Supabase. Set up a weekly review in your calendar.
@@ -267,6 +436,9 @@ Cold-start realistic targets (replaces the original aspirational targets — tho
 | Newsletter click-through rate | 4-8% cold, 8%+ once dialed | Beehiiv dashboard |
 | Tally form fills (deep-dive intakes) | 30-80 in first 8 weeks, fills 100 by month 3-4 | Supabase: `select count(*) from deepdive_intakes` |
 | Loom-to-reply rate | >50% | Manual tracking in /admin |
+| CreatorLand DMs sent this week | 10-15 | Google Sheet |
+| CreatorLand reply rate | 25-40% | Google Sheet |
+| CreatorLand reply → waitlist conversion | 30-50% of repliers | Google Sheet ↔ Supabase waitlist table |
 
 ### Monthly review (1st Friday of the month, 90 min)
 
