@@ -69,4 +69,49 @@ export async function sendAdminDeepDiveNotification(
   });
 }
 
+export interface WaitlistSignupNotificationInput {
+  email: string;
+  firstName?: string;
+  source: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+  ipCountry?: string;
+}
+
+/**
+ * Notify the operator when a new waitlist signup comes in.
+ * Fires non-fatally from /api/waitlist after the Supabase insert succeeds.
+ */
+export async function sendWaitlistSignupNotification(
+  input: WaitlistSignupNotificationInput,
+): Promise<void> {
+  const operatorEmail = process.env.FOUNDER_EMAIL ?? "hello@thecfoforcreators.com";
+
+  const utmParts = [
+    input.utm_source && `source: ${input.utm_source}`,
+    input.utm_medium && `medium: ${input.utm_medium}`,
+    input.utm_campaign && `campaign: ${input.utm_campaign}`,
+    input.utm_content && `content: ${input.utm_content}`,
+  ].filter(Boolean);
+
+  const utmLine = utmParts.length > 0 ? `<p><strong>utm:</strong> ${utmParts.join(" · ")}</p>` : "";
+
+  await resend.emails.send({
+    from: FROM,
+    to: operatorEmail,
+    subject: `new waitlist signup: ${input.email}`,
+    html: `
+      <p><strong>new waitlist signup.</strong></p>
+      <p><strong>email:</strong> ${input.email}</p>
+      <p><strong>name:</strong> ${input.firstName ?? "(not provided)"}</p>
+      <p><strong>landing source:</strong> ${input.source}</p>
+      ${utmLine}
+      ${input.ipCountry ? `<p><strong>country:</strong> ${input.ipCountry}</p>` : ""}
+      <p>view all signups in supabase → table editor → waitlist.</p>
+    `,
+  });
+}
+
 export { resend };
