@@ -13,6 +13,7 @@ import type { ToolDefinition } from "@/tools/_types";
 import contractScanner from "@/tools/contract-scanner";
 import { useState } from "react";
 import type { z } from "zod";
+import ContractFileUploader from "./ContractFileUploader";
 import ContractTextarea from "./ContractTextarea";
 import StreamingResult from "./StreamingResult";
 
@@ -40,9 +41,12 @@ export default function ContractScannerClient() {
   const [summary, setSummary] = useState<string | null>(null);
 
   // Form state
+  const [inputTab, setInputTab] = useState<"paste" | "upload">("paste");
   const [contractText, setContractText] = useState("");
+  const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
   const [creatorContext, setCreatorContext] = useState("");
   const [niche, setNiche] = useState<string>("");
+  const [saveClausePatterns, setSaveClausePatterns] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
   const isScanning = scanState.phase === "scanning";
@@ -52,7 +56,11 @@ export default function ContractScannerClient() {
     setFormError(null);
 
     if (!contractText.trim() || contractText.length < 10) {
-      setFormError("paste your contract text to scan it");
+      setFormError(
+        inputTab === "upload"
+          ? "upload a contract file to scan it"
+          : "paste your contract text to scan it",
+      );
       return;
     }
     if (contractText.length > 50_000) {
@@ -73,6 +81,7 @@ export default function ContractScannerClient() {
           contract_text: contractText,
           creator_context: creatorContext || undefined,
           niche: niche || undefined,
+          save_clause_patterns: saveClausePatterns,
         }),
       });
 
@@ -223,24 +232,80 @@ export default function ContractScannerClient() {
         scanState.phase === "scanning" ||
         scanState.phase === "error") && (
         <form onSubmit={handleScan} className="space-y-6" noValidate>
-          {/* Contract text */}
-          <div className="space-y-2">
-            <label htmlFor="contract_text" className="block text-sm font-medium text-ink">
-              contract text
-              <span className="text-danger ml-1" aria-hidden="true">
-                *
-              </span>
-            </label>
-            <p id="contract-text-help" className="text-sm text-ink-muted">
-              paste the full contract text. email addresses, phone numbers, and tax IDs are
-              automatically stripped before the AI sees it.
-            </p>
-            <ContractTextarea
-              value={contractText}
-              onChange={setContractText}
-              error={formError ?? undefined}
-              disabled={isScanning}
-            />
+          {/* Tab toggle: paste | upload */}
+          <div className="space-y-4">
+            <div
+              role="tablist"
+              aria-label="contract input method"
+              className="flex rounded-lg border border-border overflow-hidden"
+            >
+              {(["paste", "upload"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  role="tab"
+                  aria-selected={inputTab === tab}
+                  onClick={() => {
+                    setInputTab(tab);
+                    setContractText("");
+                    setUploadedFilename(null);
+                    setFormError(null);
+                  }}
+                  disabled={isScanning}
+                  className={`flex-1 min-h-tap text-sm font-medium px-4 py-2 transition-colors
+                    ${inputTab === tab ? "bg-brand text-white" : "bg-paper text-ink hover:bg-paper-soft"}
+                    ${isScanning ? "pointer-events-none opacity-60" : ""}
+                  `}
+                >
+                  {tab === "paste" ? "paste text" : "upload file"}
+                </button>
+              ))}
+            </div>
+
+            {/* Paste tab */}
+            {inputTab === "paste" && (
+              <div className="space-y-2">
+                <p className="text-sm text-ink-muted">
+                  paste the full contract text. email addresses, phone numbers, and tax IDs are
+                  automatically stripped before the AI sees it.
+                </p>
+                <ContractTextarea
+                  value={contractText}
+                  onChange={setContractText}
+                  error={formError ?? undefined}
+                  disabled={isScanning}
+                />
+              </div>
+            )}
+
+            {/* Upload tab */}
+            {inputTab === "upload" && (
+              <div className="space-y-2">
+                <p className="text-sm text-ink-muted">
+                  upload a .pdf or .docx contract file. text is extracted server-side — the raw
+                  file is never stored.
+                </p>
+                <ContractFileUploader
+                  disabled={isScanning}
+                  onExtracted={(text, filename) => {
+                    setContractText(text);
+                    setUploadedFilename(filename);
+                    setFormError(null);
+                  }}
+                />
+                {uploadedFilename && contractText && formError === null && (
+                  <p className="text-xs text-ink-muted">
+                    extracted {contractText.length.toLocaleString()} characters from{" "}
+                    {uploadedFilename}
+                  </p>
+                )}
+                {formError && (
+                  <p className="text-sm text-danger" role="alert">
+                    {formError}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Creator context */}
@@ -303,6 +368,30 @@ export default function ContractScannerClient() {
               </div>
             </fieldset>
           </div>
+
+          {/* Clause pattern opt-in */}
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={saveClausePatterns}
+              onChange={(e) => setSaveClausePatterns(e.target.checked)}
+              disabled={isScanning}
+              className="mt-0.5 min-w-[18px] min-h-[18px] accent-brand"
+            />
+            <span className="text-sm text-ink-muted leading-snug">
+              help improve the tool by saving anonymized clause patterns. your contract text +
+              identifying info still auto-delete in 7 days. only the redacted clause structure is
+              kept.{" "}
+              <a
+                href="/legal/privacy-clause-patterns"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-ink"
+              >
+                what we save and why →
+              </a>
+            </span>
+          </label>
 
           {/* Error state */}
           {scanState.phase === "error" && (

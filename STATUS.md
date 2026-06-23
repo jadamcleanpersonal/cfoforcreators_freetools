@@ -1,4 +1,50 @@
-# Sprint 4a — Sponsor Rate Calculator Status
+# Sprint 4c — Upload + Clause DB + Follow-up Defenses
+
+**Branch:** `feat/sprint4c-upload-clause-db-defenses`
+**Date:** 2026-06-19
+**Build:** PASSING — `next build` clean, 405/405 unit + integration tests pass
+
+## What was built
+
+### Workstream A — Contract file upload (PDF + docx)
+- `pdf-parse@2.4.5` + `mammoth@1.12.0` added
+- `src/lib/contract/extract_pdf.ts`, `extract_docx.ts`, `extract.ts` — extraction libs
+- `src/app/api/tools/contract-scanner/extract/route.ts` — POST endpoint (Node runtime)
+- `src/components/contract/ContractFileUploader.tsx` — drag-drop + file picker
+- `ContractScannerClient.tsx` — tab toggle (paste | upload) + opt-in checkbox
+- Edge cases: image PDF, password-protected PDF, empty docx, >10MB, wrong MIME
+
+### Workstream B — Anonymized clause pattern database
+- `supabase/migrations/00005_clause_patterns.sql`
+- `src/lib/contract/sanitize_pattern.ts` — regex PII stripper (returns null on failure)
+- `src/lib/contract/extract_clause_pattern.ts` — Haiku extraction + sanitize + insert (fire-and-forget)
+- `src/app/admin/clause-patterns/page.tsx` — password-gated admin view
+- `content/legal/privacy-clause-patterns.mdx` + legal page at `/legal/privacy-clause-patterns`
+- Opt-in checkbox (default unchecked), linked privacy addendum
+
+### Workstream C — Follow-up chat defenses
+- `supabase/migrations/00006_followup_sessions.sql`
+- `src/lib/ai-cfo/followup_prompt.ts` — `buildFollowupSystemPrompt()` + `REFUSAL_RESPONSE`
+- `[slug]/follow-up/route.ts` — 4 defenses: message cap, IP rate limit, email gate, off-topic refusal
+- `ToolFollowupChat.tsx` — email gate form, 429/403 handling
+
+## What needs to happen before merge
+
+1. **Supabase migrations** — run 00005 and 00006 in SQL editor
+2. **PR** — open manually (gh CLI not available):
+   `https://github.com/jadamcleanpersonal/cfoforcreators_freetools/compare/main...feat/sprint4c-upload-clause-db-defenses`
+3. **Pre-merge review:** upload a PDF, spot-check 5 clause patterns, test adversarial follow-up chat
+4. **pnpm onlyBuiltDependencies** may need updating for pdf-parse + mammoth (run `pnpm approve-builds`)
+
+## Deferred (not in scope)
+- OCR for scanned PDFs
+- `.doc` legacy Word support
+- Clause pattern data surfaced in scanner results (v2)
+- Tool-specific follow-up route cleanup (superseded by generic `[slug]` route)
+
+---
+
+# Sprint 4a — Sponsor Rate Calculator Status (historical)
 
 **Branch:** `feat/sprint4a-sponsor-rate`
 **Date:** 2026-06-18
