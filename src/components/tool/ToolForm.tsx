@@ -97,7 +97,9 @@ export default function ToolForm({ tool, onResult }: Props) {
                   } border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring ${
                     errorMessage ? "border-danger" : ""
                   }`}
-                  {...form.register(field.name, { valueAsNumber: true })}
+                  {...form.register(field.name, {
+                    setValueAs: (v) => (v === "" || v === null || v === undefined ? undefined : Number(v)),
+                  })}
                 />
               </div>
             )}
