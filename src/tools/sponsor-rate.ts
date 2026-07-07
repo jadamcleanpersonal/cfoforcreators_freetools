@@ -31,7 +31,13 @@ export const sponsorRateInputSchema = z.object({
   ]),
   audience_size: z.enum(["<10k", "10-100k", "100k-1M", "1M+"]),
   avg_views_per_video: z.number().int().min(0),
-  engagement_rate_pct: z.number().min(0).max(30).optional(),
+  engagement_rate_pct: z.preprocess(
+    (val) =>
+      val === "" || val === null || (typeof val === "number" && Number.isNaN(val))
+        ? undefined
+        : val,
+    z.number().min(0).max(30).optional(),
+  ),
   deliverable_type: z.enum([
     "dedicated_video",
     "integration",
