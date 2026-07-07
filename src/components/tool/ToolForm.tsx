@@ -98,7 +98,8 @@ export default function ToolForm({ tool, onResult }: Props) {
                     errorMessage ? "border-danger" : ""
                   }`}
                   {...form.register(field.name, {
-                    setValueAs: (v) => (v === "" || v === null || v === undefined ? undefined : Number(v)),
+                    setValueAs: (v) =>
+                      v === "" || v === null || v === undefined ? undefined : Number(v),
                   })}
                 />
               </div>
